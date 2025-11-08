@@ -62,3 +62,16 @@ Performans: Her güncellemedeki hafif "gürültü", modelin kötü "yerel minimu
 1HLayer_ANN modelini LRelu aktivasyon fonksiyonu he başlatması ve adam optimizasyonu eklenince optimum tahminin 2500 epochtan 600 epoch'a düşmesi modelin hızlandığını gösteriyor.
 
 2HLayer_ANN modelini LRelu aktivasyon fonksiyonu he başlatması ve adam optimizasyonu ekle bu şekilde daha hızlı eğitim yapabilir ve tanh ile yaşadığımız 17dk lık eğitim süresini düşürmeyi başarmış oluruz.
+
+------------------------------------------------
+
+1HLayer_ANN modeline R2 regularization eklendiğinde elle tutulur bir gelişim olmadığını gördüm bunun sebebi verilerin basitliğinden kaynaklanıyor olabilir. Çünkü grafiği incelediğimde grafik belirli bir yere kadar eğimli ardından yatay seyrediyor, 
+
+![alt text](image.png)
+
+burada yapmam gerekenin verideki özellikleri arttırıp daha işe yarayabilecek veriler eklemek olabilir. Bir diğer denemek istediğim şey ise bu modeldeki gizli katman sayısını arttırmak. Bu ikisini bir yaparsam %63.8 olan gördüğüm en yüksek değeri aşabilirim. Daha karmaşık veri ve daha fazla gizli katman daha karmaşık ilişkileri öğrenebilir. 
+
+
+-------------------------------------------------
+
+2HLayer_ANN_Notebook_L2Optimization_LRelu.ipynb dosyası şuan 1HLayer_ANN_Notebook_L2Optimization ile aynı buna sadece yeni gizli katman eklenecek.
