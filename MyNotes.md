@@ -75,3 +75,7 @@ burada yapmam gerekenin verideki özellikleri arttırıp daha işe yarayabilecek
 -------------------------------------------------
 
 2HLayer_ANN_Notebook_L2Optimization_LRelu.ipynb dosyası şuan 1HLayer_ANN_Notebook_L2Optimization ile aynı buna sadece yeni gizli katman eklenecek.
+
+-------------------------------------------------
+
+Sentetik veri seti toolarını araştır. (smothie yöntemi) smothe 
