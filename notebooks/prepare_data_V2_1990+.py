@@ -228,7 +228,7 @@ gc.collect()
 
 print("Adım 5/7: Veri anonimleştiriliyor (p1/p2 atanıyor)...")
 # ===============================================
-# C) ANONİMLEŞTİRME VE SON HAZIRLIK
+# C) ANONİMLEŞTİRME VE SON HAZIRLIK (DÜZELTİLMİŞ)
 # ===============================================
 
 df_final = df_all.copy()
@@ -240,21 +240,46 @@ df_final['p2_id'] = np.where(df_final['p1_id'] == df_final['winner_id'], df_fina
 df_final['Y'] = (df_final['p1_id'] == df_final['winner_id']).astype(np.int8)
 
 print("   ... p1/p2 özellikleri atanıyor ...")
-features_to_map = [
-    'rank', 'age', 'ht', 'hand', 
+
+# HATA DÜZELTMESİ: Özellikleri iki gruba ayırıyoruz
+# 1. df_all'da zaten olan 'statik' özellikler
+static_features_to_map = ['rank', 'age', 'ht', 'hand']
+# 2. Döngüde bizim oluşturduğumuz 'dinamik' özellikler
+dynamic_features_to_map = [
     'elo_pre_match', 'career_win_rate', 'career_ace_rate', 
     'surface_win_rate', 'momentum_win', 'momentum_ace', 
     'fatigue_7d_mins'
 ]
 
-for col in features_to_map:
+# --- Statik Özellikleri Ata (Doğru isimlerle: winner_age, loser_age) ---
+for col in static_features_to_map:
+    w_col_name = f'winner_{col}' # örn: winner_age
+    l_col_name = f'loser_{col}'  # örn: loser_age
+    
+    # p1'e ata
     df_final[f'p1_{col}'] = np.where(df_final['p1_id'] == df_final['winner_id'], 
-                                    df_final.get(f'w_{col}'), 
-                                    df_final.get(f'l_{col}'))
+                                    df_final[w_col_name], 
+                                    df_final[l_col_name])
+    # p2'ye ata
     df_final[f'p2_{col}'] = np.where(df_final['p2_id'] == df_final['winner_id'], 
-                                    df_final.get(f'w_{col}'), 
-                                    df_final.get(f'l_{col}'))
+                                    df_final[w_col_name], 
+                                    df_final[l_col_name])
 
+# --- Dinamik Özellikleri Ata (Doğru isimlerle: w_elo_pre_match, l_elo_pre_match) ---
+for col in dynamic_features_to_map:
+    w_col_name = f'w_{col}' # örn: w_elo_pre_match
+    l_col_name = f'l_{col}' # örn: l_elo_pre_match
+
+    # p1'e ata
+    df_final[f'p1_{col}'] = np.where(df_final['p1_id'] == df_final['winner_id'], 
+                                    df_final[w_col_name], 
+                                    df_final[l_col_name])
+    # p2'ye ata
+    df_final[f'p2_{col}'] = np.where(df_final['p2_id'] == df_final['winner_id'], 
+                                    df_final[w_col_name], 
+                                    df_final[l_col_name])
+
+# --- H2H ve Fark Özellikleri (Bunlar zaten doğruydu) ---
 df_final['p1_h2h_rate'] = np.where(df_final['p1_id'] == df_final['winner_id'], df_final['w_h2h_win_rate'], df_final['l_h2h_win_rate'])
 df_final['p2_h2h_rate'] = 1.0 - df_final['p1_h2h_rate']
 df_final['h2h_matches_played'] = df_all['h2h_matches_played']
@@ -279,18 +304,20 @@ meta_features = ['h2h_matches_played']
 surface_features = [col for col in df_final.columns if col.startswith('surface_')]
 FINAL_FEATURES = base_features + elo_features + stat_features + meta_features + surface_features
 
-# Eksik Veri Doldurma (Imputation)
+# --- Eksik Veri Doldurma (Imputation) ---
+# (Bu mantık artık doğru çalışacak çünkü veriler NaN değil, gerçek değerler içeriyor)
 rate_cols = [col for col in FINAL_FEATURES if 'rate' in col or 'h2h' in col or 'momentum' in col]
 df_final[rate_cols] = df_final[rate_cols].fillna(0.5) 
-other_cols = [col for col in FINAL_FEATURES if col not in rate_cols]
+other_cols = [col for col in FINAL_FEATURES if col not in rate_cols and col not in surface_features]
 df_final[other_cols] = df_final[other_cols].fillna(0) 
 
-df_final['p1_rank'].replace(0, 500, inplace=True)
-df_final['p2_rank'].replace(0, 500, inplace=True)
-df_final['p1_rank_diff'].replace(0, 500, inplace=True) 
-df_final['p1_ht'].replace(0, 180, inplace=True) 
-df_final['p2_ht'].replace(0, 180, inplace=True)
-
+# Rank için 500 (en kötü) gibi bir ceza
+# (Artık sadece 1990'dan itibaren az sayıda eksik veri için çalışacak)
+df_final['p1_rank'].replace(0, 500, inplace=True); df_final['p1_rank'].fillna(500, inplace=True)
+df_final['p2_rank'].replace(0, 500, inplace=True); df_final['p2_rank'].fillna(500, inplace=True)
+df_final['p1_rank_diff'].replace(0, 500, inplace=True); df_final['p1_rank_diff'].fillna(0, inplace=True)
+df_final['p1_ht'].replace(0, 180, inplace=True); df_final['p1_ht'].fillna(180, inplace=True)
+df_final['p2_ht'].replace(0, 180, inplace=True); df_final['p2_ht'].fillna(180, inplace=True)
 # --- Veri Setlerini Ayır, Normalize et ve Numpy'a Çevir ---
 # (dataset_marker_x, _y 'merge' işlemlerinden kalan isimlerdir, sorun değil)
 df_train_processed = df_final[df_final['dataset_marker'] == 'train']

@@ -79,3 +79,7 @@ burada yapmam gerekenin verideki özellikleri arttırıp daha işe yarayabilecek
 -------------------------------------------------
 
 Sentetik veri seti toolarını araştır. (smothie yöntemi) smothe 
+
+-------------------------------------------------
+
+hazır modeller ile karşılaştırma yap çıkan sonuçlara göre nasıl geliştirebileceğini öğren ardından, bahis sitelerinin bu maç için ne kadar oran verdiği bilgisini modele eklemenin yolunu araştır bu modelin tahmin yüzdesini arttırabilir.
