@@ -1,0 +1,316 @@
+{
+  "dayId": 17,
+  "title": "Day 10",
+  "shortTitle": "Day 10 Wednesday 9 July",
+  "matches": [
+    {
+      "match_id": "1502",
+      "eventName": "Gentlemen's Singles",
+      "shortEventName": "Gentlemen's Singles",
+      "eventCode": "MS",
+      "courtName": "Centre Court",
+      "shortCourtName": "Centre Court",
+      "courtId": "AA",
+      "roundCode": "Q",
+      "roundName": "Quarter-Finals",
+      "roundNameShort": "QF",
+      "eventDay": 17,
+      "duration": "3:11",
+      "statsLevel": "H",
+      "status": "Completed",
+      "statusCode": "D",
+      "winner": "2",
+      "epoch": 1752086049000,
+      "team1": {
+        "firstNameA": "Flavio",
+        "lastNameA": "Cobolli",
+        "displayNameA": "F. Cobolli",
+        "idA": "atpc0e9",
+        "nationA": "ITA",
+        "firstNameB": null,
+        "lastNameB": null,
+        "displayNameB": null,
+        "idB": null,
+        "nationB": null,
+        "seed": 22,
+        "entryStatus": null,
+        "totalSetsWon": 1,
+        "won": false,
+        "serve": false
+      },
+      "team2": {
+        "firstNameA": "Novak",
+        "lastNameA": "Djokovic",
+        "displayNameA": "N. Djokovic",
+        "idA": "atpd643",
+        "nationA": "SRB",
+        "firstNameB": null,
+        "lastNameB": null,
+        "displayNameB": null,
+        "idB": null,
+        "nationB": null,
+        "seed": 6,
+        "entryStatus": null,
+        "totalSetsWon": 3,
+        "won": true,
+        "serve": false
+      },
+      "flags": {
+        "upset": false
+      },
+      "scores": {
+        "setsWon": [
+          2,
+          1,
+          2,
+          2,
+          2,
+          0
+        ],
+        "setDurations": [
+          "68",
+          "26",
+          "52",
+          "45"
+        ],
+        "sets": [
+          [
+            {
+              "score": 7,
+              "scoreDisplay": "7",
+              "tiebreak": 8,
+              "tiebreakDisplay": "8",
+              "challenge_total": null,
+              "challenge_won": null,
+              "challenge_lost": null,
+              "challenge_remaining": null
+            },
+            {
+              "score": 6,
+              "scoreDisplay": "6",
+              "tiebreak": 6,
+              "tiebreakDisplay": "6",
+              "challenge_total": null,
+              "challenge_won": null,
+              "challenge_lost": null,
+              "challenge_remaining": null
+            }
+          ],
+          [
+            {
+              "score": 2,
+              "scoreDisplay": "2",
+              "tiebreak": null,
+              "tiebreakDisplay": null,
+              "challenge_total": null,
+              "challenge_won": null,
+              "challenge_lost": null,
+              "challenge_remaining": null
+            },
+            {
+              "score": 6,
+              "scoreDisplay": "6",
+              "tiebreak": null,
+              "tiebreakDisplay": null,
+              "challenge_total": null,
+              "challenge_won": null,
+              "challenge_lost": null,
+              "challenge_remaining": null
+            }
+          ],
+          [
+            {
+              "score": 5,
+              "scoreDisplay": "5",
+              "tiebreak": null,
+              "tiebreakDisplay": null,
+              "challenge_total": null,
+              "challenge_won": null,
+              "challenge_lost": null,
+              "challenge_remaining": null
+            },
+            {
+              "score": 7,
+              "scoreDisplay": "7",
+              "tiebreak": null,
+              "tiebreakDisplay": null,
+              "challenge_total": null,
+              "challenge_won": null,
+              "challenge_lost": null,
+              "challenge_remaining": null
+            }
+          ],
+          [
+            {
+              "score": 4,
+              "scoreDisplay": "4",
+              "tiebreak": null,
+              "tiebreakDisplay": null,
+              "challenge_total": null,
+              "challenge_won": null,
+              "challenge_lost": null,
+              "challenge_remaining": null
+            },
+            {
+              "score": 6,
+              "scoreDisplay": "6",
+              "tiebreak": null,
+              "tiebreakDisplay": null,
+              "challenge_total": null,
+              "challenge_won": null,
+              "challenge_lost": null,
+              "challenge_remaining": null
+            }
+          ]
+        ],
+        "gameScore": [
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "match_id": "1501",
+      "eventName": "Gentlemen's Singles",
+      "shortEventName": "Gentlemen's Singles",
+      "eventCode": "MS",
+      "courtName": "No.1 Court",
+      "shortCourtName": "No.1 Court",
+      "courtId": "AB",
+      "roundCode": "Q",
+      "roundName": "Quarter-Finals",
+      "roundNameShort": "QF",
+      "eventDay": 17,
+      "duration": "2:19",
+      "statsLevel": "H",
+      "status": "Completed",
+      "statusCode": "D",
+      "winner": "1",
+      "epoch": 1752080021000,
+      "team1": {
+        "firstNameA": "Jannik",
+        "lastNameA": "Sinner",
+        "displayNameA": "J. Sinner",
+        "idA": "atps0ag",
+        "nationA": "ITA",
+        "firstNameB": null,
+        "lastNameB": null,
+        "displayNameB": null,
+        "idB": null,
+        "nationB": null,
+        "seed": 1,
+        "entryStatus": null,
+        "totalSetsWon": 3,
+        "won": true,
+        "serve": false
+      },
+      "team2": {
+        "firstNameA": "Ben",
+        "lastNameA": "Shelton",
+        "displayNameA": "B. Shelton",
+        "idA": "atps0s1",
+        "nationA": "USA",
+        "firstNameB": null,
+        "lastNameB": null,
+        "displayNameB": null,
+        "idB": null,
+        "nationB": null,
+        "seed": 10,
+        "entryStatus": null,
+        "totalSetsWon": 0,
+        "won": false,
+        "serve": false
+      },
+      "flags": {
+        "upset": false
+      },
+      "scores": {
+        "setsWon": [
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "setDurations": [
+          "52",
+          "46",
+          "41"
+        ],
+        "sets": [
+          [
+            {
+              "score": 7,
+              "scoreDisplay": "7",
+              "tiebreak": 7,
+              "tiebreakDisplay": "7",
+              "challenge_total": null,
+              "challenge_won": null,
+              "challenge_lost": null,
+              "challenge_remaining": null
+            },
+            {
+              "score": 6,
+              "scoreDisplay": "6",
+              "tiebreak": 2,
+              "tiebreakDisplay": "2",
+              "challenge_total": null,
+              "challenge_won": null,
+              "challenge_lost": null,
+              "challenge_remaining": null
+            }
+          ],
+          [
+            {
+              "score": 6,
+              "scoreDisplay": "6",
+              "tiebreak": null,
+              "tiebreakDisplay": null,
+              "challenge_total": null,
+              "challenge_won": null,
+              "challenge_lost": null,
+              "challenge_remaining": null
+            },
+            {
+              "score": 4,
+              "scoreDisplay": "4",
+              "tiebreak": null,
+              "tiebreakDisplay": null,
+              "challenge_total": null,
+              "challenge_won": null,
+              "challenge_lost": null,
+              "challenge_remaining": null
+            }
+          ],
+          [
+            {
+              "score": 6,
+              "scoreDisplay": "6",
+              "tiebreak": null,
+              "tiebreakDisplay": null,
+              "challenge_total": null,
+              "challenge_won": null,
+              "challenge_lost": null,
+              "challenge_remaining": null
+            },
+            {
+              "score": 4,
+              "scoreDisplay": "4",
+              "tiebreak": null,
+              "tiebreakDisplay": null,
+              "challenge_total": null,
+              "challenge_won": null,
+              "challenge_lost": null,
+              "challenge_remaining": null
+            }
+          ]
+        ],
+        "gameScore": [
+          null,
+          null
+        ]
+      }
+    }
+  ]
+}

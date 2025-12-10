@@ -1,0 +1,220 @@
+================================================================================
+🎾 WIMBLEDON 2025 - MODEL PREDICTIONS vs IBM
+================================================================================
+✓ Loaded 127 IBM predictions
+✓ Model expects 37 features in this exact order
+
+==================================================================================================================================
+📊 Round 1
+==================================================================================================================================
+MY MODEL Accuracy: 59.4% (38/64) | IBM Accuracy: 56.2% (36/64)
+
+Player 1             Player 2             Act  MyP  MyP1%  MyP2%  MyCf   ✓  IBM  IP1%   IP2%   ICf    ✓ 
+----------------------------------------------------------------------------------------------------------------------------------
+Fabio Fognini        Carlos Alcaraz       P2   P2   3.5%   96.5%  96.5%  ✓  P2   13%    87%    87%    ✓ 
+Jacob Fearnley       Joao Fonseca         P2   P1   82.0%  18.0%  82.0%  ✗  P2   38%    62%    62%    ✓ 
+Benjamin Bonzi       Daniil Medvedev      P1   P2   0.5%   99.5%  99.5%  ✗  P2   24%    76%    76%    ✗ 
+Holger Rune          Nicolas Jarry        P2   P1   69.7%  30.3%  69.7%  ✗  P1   86%    14%    86%    ✗ 
+Matteo Berrettini    Kamil Majchrzak      P2   P1   94.5%  5.5%   94.5%  ✗  P1   64%    36%    64%    ✗ 
+Elmer Moller         Frances Tiafoe       P2   P2   5.9%   94.1%  94.1%  ✓  P2   31%    69%    69%    ✓ 
+Valentin Royer       Stefanos Tsitsipas   P1   P2   8.6%   91.4%  91.4%  ✗  P2   39%    61%    61%    ✗ 
+Mackenzie McDonald   Karen Khachanov      P2   P2   5.6%   94.4%  94.4%  ✓  P2   35%    65%    65%    ✓ 
+Cameron Norrie       Roberto Bautista     P1   P2   38.0%  62.0%  62.0%  ✗  P1   54%    46%    54%    ✓ 
+Oliver Tarvet        Leandro Riedi        P1   P1   53.9%  46.1%  53.9%  ✓  P2   46%    54%    54%    ✗ 
+Ethan Quinn          Henry Searle         P1   P1   76.1%  23.9%  76.1%  ✓  P1   75%    25%    75%    ✓ 
+Adrian Mannarino     Christopher Connell  P1   P1   94.1%  5.9%   94.1%  ✓  P2   42%    58%    58%    ✗ 
+Luciano Darderi      Roman Safiullin      P1   P1   52.0%  48.0%  52.0%  ✓  P1   56%    44%    56%    ✓ 
+Learner Tien         Nishesh Basavareddy  P1   P1   56.4%  43.6%  56.4%  ✓  P1   62%    38%    62%    ✓ 
+Zizou Bergs          Lloyd Harris         P2   P1   58.5%  41.5%  58.5%  ✗  P1   73%    27%    73%    ✗ 
+Jan-Lennard Struff   Filip Misolic        P1   P1   65.9%  34.1%  65.9%  ✓  P2   42%    58%    58%    ✗ 
+Gabriel Diallo       Daniel Altmaier      P1   P1   53.7%  46.3%  53.7%  ✓  P2   46%    54%    54%    ✗ 
+Brandon Holt         Davidovich Fokina    P2   P2   42.3%  57.7%  57.7%  ✓  P2   34%    66%    66%    ✓ 
+Vit Kopriva          Jordan Thompson      P2   P2   15.8%  84.2%  84.2%  ✓  P2   47%    53%    53%    ✓ 
+Cristian Garin       Chris Rodesch        P1   P1   61.7%  38.3%  61.7%  ✓  P2   48%    52%    52%    ✗ 
+Felix A-Aliassime    James Duckworth      P1   P2   45.1%  54.9%  54.9%  ✗  P1   70%    30%    70%    ✓ 
+Jenson Brooksby      Tallon Griekspoor    P1   P2   30.7%  69.3%  69.3%  ✗  P2   35%    65%    65%    ✗ 
+Alexei Popyrin       Arthur Fery          P2   P1   87.8%  12.2%  87.8%  ✗  P1   76%    24%    76%    ✗ 
+Billy Harris         Dusan Lajovic        P1   P1   86.7%  13.3%  86.7%  ✓  P1   51%    49%    51%    ✓ 
+Mattia Bellucci      Oliver Crawford      P1   P1   60.8%  39.2%  60.8%  ✓  P1   71%    29%    71%    ✓ 
+Andrey Rublev        Laslo Djere          P1   P1   98.7%  1.3%   98.7%  ✓  P1   63%    37%    63%    ✓ 
+Jiri Lehecka         Hugo Dellien         P1   P1   94.1%  5.9%   94.1%  ✓  P1   61%    39%    61%    ✓ 
+Francisco Cerundolo  Nuno Borges          P2   P1   94.1%  5.9%   94.1%  ✗  P1   58%    42%    58%    ✗ 
+Arthur Rinderknech   Alexander Zverev     P1   P2   2.7%   97.3%  97.3%  ✗  P2   23%    77%    77%    ✗ 
+Alexandre Muller     Novak Djokovic       P2   P1   58.8%  41.2%  58.8%  ✗  P2   30%    70%    70%    ✓ 
+Jannik Sinner        Luca Nardi           P1   P1   99.9%  0.1%   99.9%  ✓  P1   79%    21%    79%    ✓ 
+Taylor Fritz         Giovanni Perricard   P1   P1   70.2%  29.8%  70.2%  ✓  P1   51%    49%    51%    ✓ 
+Jack Draper          Sebastian Baez       P1   P1   77.2%  22.8%  77.2%  ✓  P1   80%    20%    80%    ✓ 
+Nikoloz Basilashvili Lorenzo Musetti      P1   P2   10.1%  89.9%  89.9%  ✗  P2   16%    84%    84%    ✗ 
+Ben Shelton          Alex Bolt            P1   P1   90.7%  9.3%   90.7%  ✓  P1   72%    28%    72%    ✓ 
+Johannus Monday      Tommy Paul           P2   P2   14.4%  85.6%  85.6%  ✓  P2   30%    70%    70%    ✓ 
+Grigor Dimitrov      Yoshihito Nishioka   P1   P1   98.0%  2.0%   98.0%  ✓  P1   67%    33%    67%    ✓ 
+Matteo Arnaldi       Botic Zandschulp     P2   P1   86.5%  13.5%  86.5%  ✗  P1   60%    40%    60%    ✗ 
+Daniel Evans         Jay Clarke           P1   P2   44.1%  55.9%  55.9%  ✗  P1   52%    48%    52%    ✓ 
+Gael Monfils         Ugo Humbert          P1   P2   40.6%  59.4%  59.4%  ✗  P2   46%    54%    54%    ✗ 
+Alex de Minaur       Roberto Baena        P1   P2   48.5%  51.5%  51.5%  ✗  P1   67%    33%    67%    ✓ 
+Hugo Gaston          Jakub Mensik         P2   P2   49.1%  50.9%  50.9%  ✓  P2   35%    65%    65%    ✓ 
+Alex Michelsen       Miomir Kecmanovic    P2   P1   68.8%  31.2%  68.8%  ✗  P2   51%    49%    51%    ✗ 
+Shintaro Mochizuki   Giulio Zeppieri      P1   P2   32.2%  67.8%  67.8%  ✗  P1   69%    31%    69%    ✓ 
+Alexander Shevchenko Reilly Opelka        P2   P2   43.5%  56.5%  56.5%  ✓  P2   39%    61%    61%    ✓ 
+Chun-Hsin Tseng      Aleksandar Vukic     P2   P2   23.6%  76.4%  76.4%  ✓  P1   51%    49%    51%    ✗ 
+Rinky Hijikata       David Goffin         P1   P1   78.1%  21.9%  78.1%  ✓  P2   47%    53%    53%    ✗ 
+Arthur Cazaux        Adam Walton          P1   P1   60.3%  39.7%  60.3%  ✓  P1   55%    45%    55%    ✓ 
+Quentin Halys        August Holmgren      P2   P1   61.5%  38.5%  61.5%  ✗  P1   69%    31%    69%    ✗ 
+Jesper de Jong       Christopher Eubanks  P1   P2   16.9%  83.1%  83.1%  ✗  P2   48%    52%    52%    ✗ 
+Aleksandar Kovacevic Marton Fucsovics     P2   P1   59.9%  40.1%  59.9%  ✗  P1   56%    44%    56%    ✗ 
+Jaime Faria          Lorenzo Sonego       P2   P2   8.9%   91.1%  91.1%  ✓  P2   40%    60%    60%    ✓ 
+Sebastian Ofner      Hamad Medjedovic     P1   P1   64.6%  35.4%  64.6%  ✓  P2   35%    65%    65%    ✗ 
+Marcos Giron         Camilo Ugo Carabelli P1   P1   93.0%  7.0%   93.0%  ✓  P1   53%    47%    53%    ✓ 
+James McCabe         Fabian Marozsan      P2   P2   38.4%  61.6%  61.6%  ✓  P2   37%    63%    63%    ✓ 
+Francisco Comesana   Corentin Moutet      P2   P2   35.6%  64.4%  64.4%  ✓  P2   46%    54%    54%    ✓ 
+Jaume Munar          Alexander Bublik     P1   P2   17.1%  82.9%  82.9%  ✗  P2   48%    52%    52%    ✗ 
+Raphael Collignon    Marin Cilic          P2   P1   74.1%  25.9%  74.1%  ✗  P1   57%    43%    57%    ✗ 
+Damir Dzumhur        Tomas Machac         P2   P2   37.1%  62.9%  62.9%  ✓  P2   37%    63%    63%    ✓ 
+Pedro Martinez       George Loffhagen     P1   P1   60.0%  40.0%  60.0%  ✓  P1   70%    30%    70%    ✓ 
+Flavio Cobolli       Beibit Zhukayev      P1   P1   73.8%  26.2%  73.8%  ✓  P1   71%    29%    71%    ✓ 
+Mariano Navone       Denis Shapovalov     P1   P1   63.9%  36.1%  63.9%  ✓  P2   41%    59%    59%    ✗ 
+Tomas Martin         Pinnington Jones     P2   P1   78.7%  21.3%  78.7%  ✗  P1   74%    26%    74%    ✗ 
+Brandon Nakashima    Yunchaokete Bu       P1   P1   91.2%  8.8%   91.2%  ✓  P1   59%    41%    59%    ✓ 
+
+==================================================================================================================================
+📊 Round 2
+==================================================================================================================================
+MY MODEL Accuracy: 65.6% (21/32) | IBM Accuracy: 68.8% (22/32)
+
+Player 1             Player 2             Act  MyP  MyP1%  MyP2%  MyCf   ✓  IBM  IP1%   IP2%   ICf    ✓ 
+--------------------------------------------------------------------------------------------------------
+Oliver Tarvet        Carlos Alcaraz       P2   P2   1.4%   98.6%  98.6%  ✓  P2   6%     94%    94%    ✓ 
+Cameron Norrie       Frances Tiafoe       P1   P2   43.4%  56.6%  56.6%  ✗  P2   40%    60%    60%    ✗ 
+Taylor Fritz         Gabriel Diallo       P1   P1   94.6%  5.4%   94.6%  ✓  P1   72%    28%    72%    ✓ 
+Nuno Borges          Billy Harris         P1   P2   41.5%  58.5%  58.5%  ✗  P1   67%    33%    67%    ✓ 
+Andrey Rublev        Lloyd Harris         P1   P1   97.2%  2.8%   97.2%  ✓  P1   77%    23%    77%    ✓ 
+Jiri Lehecka         Mattia Bellucci      P2   P1   86.8%  13.2%  86.8%  ✗  P1   57%    43%    57%    ✗ 
+Joao Fonseca         Jenson Brooksby      P1   P2   35.9%  64.1%  64.1%  ✗  P1   63%    37%    63%    ✓ 
+Shintaro Mochizuki   Karen Khachanov      P2   P2   2.4%   97.6%  97.6%  ✓  P2   37%    63%    63%    ✓ 
+Kamil Majchrzak      Ethan Quinn          P1   P2   32.6%  67.4%  67.4%  ✗  P2   42%    58%    58%    ✗ 
+Nicolas Jarry        Learner Tien         P1   P1   80.3%  19.7%  80.3%  ✓  P2   37%    63%    63%    ✗ 
+Jordan Thompson      Benjamin Bonzi       P1   P1   77.6%  22.4%  77.6%  ✓  P1   54%    46%    54%    ✓ 
+Adrian Mannarino     Valentin Royer       P1   P1   94.1%  5.9%   94.1%  ✓  P2   43%    57%    57%    ✗ 
+Daniel Evans         Novak Djokovic       P2   P2   0.1%   99.9%  99.9%  ✓  P2   13%    87%    87%    ✓ 
+Jannik Sinner        Aleksandar Vukic     P1   P1   100.0% 0.0%   100.0% ✓  P1   90%    10%    90%    ✓ 
+Jack Draper          Marin Cilic          P2   P1   81.4%  18.6%  81.4%  ✗  P1   85%    15%    85%    ✗ 
+Alex de Minaur       Arthur Cazaux        P1   P2   24.2%  75.8%  75.8%  ✗  P1   67%    33%    67%    ✓ 
+Arthur Fery          Luciano Darderi      P2   P2   29.3%  70.7%  70.7%  ✓  P2   23%    77%    77%    ✓ 
+Grigor Dimitrov      Corentin Moutet      P1   P1   56.3%  43.7%  56.3%  ✓  P1   54%    46%    54%    ✓ 
+Sebastian Ofner      Tommy Paul           P1   P1   73.3%  26.7%  73.3%  ✓  P2   27%    73%    73%    ✗ 
+Marcos Giron         Jakub Mensik         P2   P1   63.3%  36.7%  63.3%  ✗  P2   39%    61%    61%    ✓ 
+August Holmgren      Tomas Machac         P1   P2   34.9%  65.1%  65.1%  ✗  P2   27%    73%    73%    ✗ 
+Flavio Cobolli       Jack Pinnington      P1   P1   86.1%  13.9%  86.1%  ✓  P1   75%    25%    75%    ✓ 
+Felix A-Aliassime    Jan-Lennard Struff   P2   P1   66.6%  33.4%  66.6%  ✗  P1   71%    29%    71%    ✗ 
+Botic Zandschulp     Davidovich Fokina    P2   P2   37.7%  62.3%  62.3%  ✓  P2   35%    65%    65%    ✓ 
+Fabian Marozsan      Jaume Munar          P2   P1   51.7%  48.3%  51.7%  ✗  P2   42%    58%    58%    ✓ 
+Miomir Kecmanovic    Jesper de Jong       P1   P1   86.5%  13.5%  86.5%  ✓  P1   61%    39%    61%    ✓ 
+Pedro Martinez       Mariano Navone       P1   P1   66.9%  33.1%  66.9%  ✓  P1   55%    45%    55%    ✓ 
+Brandon Nakashima    Reilly Opelka        P1   P1   62.9%  37.1%  62.9%  ✓  P1   55%    45%    55%    ✓ 
+Cristian Garin       Arthur Rinderknech   P2   P2   31.4%  68.6%  68.6%  ✓  P2   47%    53%    53%    ✓ 
+Lorenzo Sonego       Nikoloz Basilashvili P1   P1   87.3%  12.7%  87.3%  ✓  P1   65%    35%    65%    ✓ 
+Ben Shelton          Rinky Hijikata       P1   P1   95.9%  4.1%   95.9%  ✓  P1   68%    32%    68%    ✓ 
+Marton Fucsovics     Gael Monfils         P1   P1   53.3%  46.7%  53.3%  ✓  P2   37%    63%    63%    ✗ 
+
+==================================================================================================================================
+📊 Round 3
+==================================================================================================================================
+MY MODEL Accuracy: 75.0% (12/16) | IBM Accuracy: 56.2% (9/16)
+
+Player 1             Player 2             Act  MyP  MyP1%  MyP2%  MyCf   ✓  IBM  IP1%   IP2%   ICf    ✓ 
+----------------------------------------------------------------------------------------------------------------------------------
+Taylor Fritz         Davidovich Fokina    P1   P1   60.0%  40.0%  60.0%  ✓  P1   66%    34%    66%    ✓ 
+Jan-Lennard Struff   Carlos Alcaraz       P2   P2   1.4%   98.6%  98.6%  ✓  P2   11%    89%    89%    ✓ 
+Mattia Bellucci      Cameron Norrie       P2   P2   13.0%  87.0%  87.0%  ✓  P1   55%    45%    55%    ✗ 
+Nicolas Jarry        Joao Fonseca         P1   P1   93.9%  6.1%   93.9%  ✓  P2   35%    65%    65%    ✗ 
+Andrey Rublev        Adrian Mannarino     P1   P1   76.9%  23.1%  76.9%  ✓  P1   71%    29%    71%    ✓ 
+Nuno Borges          Karen Khachanov      P2   P2   29.3%  70.7%  70.7%  ✓  P2   48%    52%    52%    ✓ 
+Kamil Majchrzak      Arthur Rinderknech   P1   P2   20.5%  79.5%  79.5%  ✗  P2   43%    57%    57%    ✗ 
+Luciano Darderi      Jordan Thompson      P2   P1   52.9%  47.1%  52.9%  ✗  P1   52%    48%    52%    ✗ 
+Jannik Sinner        Pedro Martinez       P1   P1   100.0% 0.0%   100.0% ✓  P1   85%    15%    85%    ✓ 
+Miomir Kecmanovic    Novak Djokovic       P2   P1   68.6%  31.4%  68.6%  ✗  P2   23%    77%    77%    ✓ 
+Ben Shelton          Marton Fucsovics     P1   P1   83.7%  16.3%  83.7%  ✓  P1   68%    32%    68%    ✓ 
+Alex de Minaur       August Holmgren      P1   P1   52.4%  47.6%  52.4%  ✓  P1   72%    28%    72%    ✓ 
+Grigor Dimitrov      Sebastian Ofner      P1   P1   82.0%  18.0%  82.0%  ✓  P1   70%    30%    70%    ✓ 
+Flavio Cobolli       Jakub Mensik         P1   P1   73.9%  26.1%  73.9%  ✓  P2   42%    58%    58%    ✗ 
+Marin Cilic          Jaume Munar          P1   P1   92.7%  7.3%   92.7%  ✓  P2   43%    57%    57%    ✗ 
+Brandon Nakashima    Lorenzo Sonego       P2   P1   64.8%  35.2%  64.8%  ✗  P1   51%    49%    51%    ✗ 
+
+==================================================================================================================================
+📊 Round 4
+==================================================================================================================================
+MY MODEL Accuracy: 100.0% (8/8) | IBM Accuracy: 100.0% (8/8)
+
+Player 1             Player 2             Act  MyP  MyP1%  MyP2%  MyCf   ✓  IBM  IP1%   IP2%   ICf    ✓ 
+----------------------------------------------------------------------------------------------------------------------------------
+Andrey Rublev        Carlos Alcaraz       P2   P2   10.5%  89.5%  89.5%  ✓  P2   25%    75%    75%    ✓ 
+Taylor Fritz         Jordan Thompson      P1   P1   79.5%  20.5%  79.5%  ✓  P1   77%    23%    77%    ✓ 
+Nicolas Jarry        Cameron Norrie       P2   P2   46.4%  53.6%  53.6%  ✓  P2   40%    60%    60%    ✓ 
+Karen Khachanov      Kamil Majchrzak      P1   P1   99.2%  0.8%   99.2%  ✓  P1   69%    31%    69%    ✓ 
+Alex de Minaur       Novak Djokovic       P2   P2   3.9%   96.1%  96.1%  ✓  P2   30%    70%    70%    ✓ 
+Jannik Sinner        Grigor Dimitrov      P1   P1   99.9%  0.1%   99.9%  ✓  P1   86%    14%    86%    ✓ 
+Ben Shelton          Lorenzo Sonego       P1   P1   64.8%  35.2%  64.8%  ✓  P1   63%    37%    63%    ✓ 
+Marin Cilic          Flavio Cobolli       P2   P2   10.7%  89.3%  89.3%  ✓  P2   31%    69%    69%    ✓ 
+
+==================================================================================================================================
+📊 Quarter Finals
+==================================================================================================================================
+MY MODEL Accuracy: 50.0% (2/4) | IBM Accuracy: 100.0% (4/4)
+
+Player 1             Player 2             Act  MyP  MyP1%  MyP2%  MyCf   ✓  IBM  IP1%   IP2%   ICf    ✓ 
+----------------------------------------------------------------------------------------------------------------------------------
+Cameron Norrie       Carlos Alcaraz       P2   P2   3.3%   96.7%  96.7%  ✓  P2   13%    87%    87%    ✓ 
+Taylor Fritz         Karen Khachanov      P1   P2   28.4%  71.6%  71.6%  ✗  P1   67%    33%    67%    ✓ 
+Flavio Cobolli       Novak Djokovic       P2   P1   66.9%  33.1%  66.9%  ✗  P2   26%    74%    74%    ✓ 
+Jannik Sinner        Ben Shelton          P1   P1   100.0% 0.0%   100.0% ✓  P1   80%    20%    80%    ✓ 
+
+==================================================================================================================================
+📊 Semi Finals
+==================================================================================================================================
+MY MODEL Accuracy: 100.0% (2/2) | IBM Accuracy: 100.0% (2/2)
+
+Player 1             Player 2             Act  MyP  MyP1%  MyP2%  MyCf   ✓  IBM  IP1%   IP2%   ICf    ✓ 
+----------------------------------------------------------------------------------------------------------------------------------
+Taylor Fritz         Carlos Alcaraz       P2   P2   35.4%  64.6%  64.6%  ✓  P2   40%    60%    60%    ✓ 
+Jannik Sinner        Novak Djokovic       P1   P1   99.6%  0.4%   99.6%  ✓  P1   56%    44%    56%    ✓ 
+
+==================================================================================================================================
+📊 Final
+==================================================================================================================================
+MY MODEL Accuracy: 100.0% (1/1) | IBM Accuracy: 100.0% (1/1)
+
+Player 1             Player 2             Act  MyP  MyP1%  MyP2%  MyCf   ✓  IBM  IP1%   IP2%   ICf    ✓ 
+----------------------------------------------------------------------------------------------------------------------------------
+Jannik Sinner        Carlos Alcaraz       P1   P1   99.0%  1.0%   99.0%  ✓  P1   51%    49%    51%    ✓ 
+
+==================================================================================================================================
+📈 OVERALL WIMBLEDON 2025 RESULTS - MY MODEL vs IBM
+==================================================================================================================================
+Total matches: 127
+
+MY MODEL:
+  Correct predictions: 84
+  Overall accuracy: 66.1%
+
+IBM:
+  Correct predictions: 82
+  Overall accuracy: 64.6%
+
+DIFFERENCE:
+  MY MODEL is BETTER by 2 matches (+1.6%)
+
+📊 Accuracy by Round - MY MODEL vs IBM:
+--------------------------------------------------------------------------------
+Round                My Model             IBM                  Difference          
+--------------------------------------------------------------------------------
+Round 1              59.4% (38/64)        56.2% (36/64)        +3.1% (+2)          
+Round 2              65.6% (21/32)        68.8% (22/32)        -3.1% (-1)          
+Round 3              75.0% (12/16)        56.2% (9/16)         +18.8% (+3)         
+Round 4              100.0% (8/8)         100.0% (8/8)         +0.0% (+0)          
+Quarter Finals       50.0% (2/4)          100.0% (4/4)         -50.0% (-2)         
+Semi Finals          100.0% (2/2)         100.0% (2/2)         +0.0% (+0)          
+Final                100.0% (1/1)         100.0% (1/1)         +0.0% (+0)          
+
+==================================================================================================================================
+✅ WIMBLEDON 2025 PREDICTION COMPLETE!
+==================================================================================================================================

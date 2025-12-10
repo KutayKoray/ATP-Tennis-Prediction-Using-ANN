@@ -1,0 +1,7 @@
+# Virtual Environment
+.venv/
+
+# Large CSV files (exceed GitHub 100MB limit)
+notebooks/FeatureEngineering/atp_matches_featured.csv
+notebooks/FeatureEngineering/atp_featured_dataset.csv
+notebooks/FeatureEngineering/atp_matches_cleaned.csv
