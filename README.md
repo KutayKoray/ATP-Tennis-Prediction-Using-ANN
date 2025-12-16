@@ -7,7 +7,7 @@
 
 > **A journey from zero to beating IBM's AI predictions at Wimbledon 2025**
 
-This project implements a complete neural network system **from scratch** (no TensorFlow, no PyTorch) to predict professional tennis match outcomes. The ultimate goal: **outperform IBM's Watson AI** in predicting Wimbledon 2025 tournament results.
+This project implements a complete neural network system **from scratch** (no TensorFlow, no PyTorch) to predict professional tennis match outcomes. The ultimate goal: **outperform IBM's SlamTracker AI** in predicting Wimbledon 2025 tournament results.
 
 ## 🎯 Project Mission
 
@@ -112,7 +112,7 @@ ANN/
 │       ├── prepare_wimbledon_features.py
 │       ├── normalize_wimbledon.py
 │       ├── 2025_wimbledon_matches.csv
-│       ├── IBM's_predictions.csv     # IBM Watson predictions
+│       ├── IBM's_predictions.csv     # IBM SlamTacker predictions
 │       └── rounds/                   # Round-by-round results
 │           ├── Round1_FirstRound.csv
 │           ├── Round2_SecondRound.csv
@@ -252,7 +252,7 @@ python normalize_wimbledon.py
 # Execute the Wimbledon prediction cell in 2HLayer_ANN.ipynb
 ```
 
-### 4. Comparing with IBM Watson
+### 4. Comparing with IBM SlamTacker
 
 The notebook automatically compares predictions with IBM's:
 - Round-by-round accuracy comparison
