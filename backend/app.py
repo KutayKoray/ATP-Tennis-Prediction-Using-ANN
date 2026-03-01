@@ -11,6 +11,7 @@ Endpoints:
 
 import os
 import sys
+import traceback
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
@@ -28,22 +29,54 @@ CACHE_PATH = os.path.join(BASE_DIR, 'player_stats_cache.pkl')
 app = Flask(__name__)
 CORS(app)  # Allow frontend to connect
 
-# ── Initialize components ────────────────────────────────────────────────────
-print("=" * 60)
-print("🎾 ATP TENNIS MATCH PREDICTION API")
-print("=" * 60)
+# ── Lazy initialization (avoids gunicorn preload crash) ──────────────────────
+predictor = None
+stats_engine = None
+init_error = None
+init_done = False
 
-print("\n[1/2] Loading model...")
-predictor = TennisPredictor(MODEL_DIR)
-predictor.load()
+def ensure_initialized():
+    """Initialize model and stats on first request (not at import time)."""
+    global predictor, stats_engine, init_error, init_done
+    if init_done:
+        return init_error is None
 
-print("\n[2/2] Loading player statistics...")
-stats_engine = PlayerStatsEngine(DATA_DIR, cache_path=CACHE_PATH)
-stats_engine.load()
+    try:
+        print("=" * 60)
+        print("🎾 ATP TENNIS MATCH PREDICTION API")
+        print("=" * 60)
 
-print("\n" + "=" * 60)
-print("✅ API READY")
-print("=" * 60)
+        print("\n[1/2] Loading model...")
+        predictor = TennisPredictor(MODEL_DIR)
+        predictor.load()
+
+        print("\n[2/2] Loading player statistics...")
+        stats_engine = PlayerStatsEngine(DATA_DIR, cache_path=CACHE_PATH)
+        stats_engine.load()
+
+        print("\n" + "=" * 60)
+        print("✅ API READY")
+        print("=" * 60)
+        init_done = True
+        return True
+    except Exception as e:
+        init_error = str(e)
+        init_done = True
+        print(f"\n❌ INITIALIZATION FAILED: {e}")
+        traceback.print_exc()
+        return False
+
+
+# ── Root endpoint ────────────────────────────────────────────────────────────
+
+@app.route('/', methods=['GET'])
+def root():
+    """Root endpoint — shows if API is running."""
+    return jsonify({
+        'service': 'Tennis Match Prediction API',
+        'status': 'ready' if (init_done and init_error is None) else 'starting',
+        'endpoints': ['/api/health', '/api/players?q=name', '/api/predict'],
+    })
 
 
 # ── Endpoints ────────────────────────────────────────────────────────────────
@@ -51,6 +84,8 @@ print("=" * 60)
 @app.route('/api/health', methods=['GET'])
 def health():
     """Health check endpoint."""
+    if not ensure_initialized():
+        return jsonify({'status': 'error', 'error': init_error}), 503
     return jsonify({
         'status': 'ok',
         'model': predictor.metadata.get('model_type', 'unknown'),
@@ -67,6 +102,9 @@ def search_players():
       - q: search query (partial name match)
       - limit: max results (default 20)
     """
+    if not ensure_initialized():
+        return jsonify({'error': 'Server is still initializing, please wait...'}), 503
+
     query = request.args.get('q', '').strip()
     limit = int(request.args.get('limit', 20))
 
@@ -100,6 +138,9 @@ def predict():
     }
     """
     data = request.get_json()
+
+    if not ensure_initialized():
+        return jsonify({'error': 'Server is still initializing, please wait...'}), 503
 
     if not data:
         return jsonify({'error': 'Request body must be JSON'}), 400
