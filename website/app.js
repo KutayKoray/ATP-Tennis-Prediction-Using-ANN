@@ -2,7 +2,7 @@
    Tennis Match Prediction AI — App Logic
    ═══════════════════════════════════════════════════════════ */
 
-const API_BASE = 'http://localhost:5001';
+const API_BASE = 'https://atp-tennis-prediction-using-ann.onrender.com';
 
 // ─── Set current month on load ──────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
