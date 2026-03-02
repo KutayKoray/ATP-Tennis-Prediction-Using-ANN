@@ -1327,6 +1327,22 @@ a:hover {
   }
 
   .nav-links {
+    gap: 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-links a {
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  .nav-github {
     display: none;
   }
 
@@ -1401,7 +1417,7 @@ a:hover {
   }
 
   .hero {
-    padding-top: 70px;
+    padding-top: 90px;
     min-height: auto;
     padding-bottom: 48px;
   }
