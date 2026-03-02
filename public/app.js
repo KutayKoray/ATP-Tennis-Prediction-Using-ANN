@@ -180,7 +180,7 @@ async function predictMatch() {
 
         displayResult(data);
     } catch (err) {
-        showError('⚠️ Could not connect to backend. Make sure the server is running on localhost:5001');
+        showError('⚠️ Could not connect to the prediction API. Please try again in a moment.');
     }
 
     btn.classList.remove('loading');

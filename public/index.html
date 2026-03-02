@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="A neural network built from scratch that predicts ATP tennis match outcomes. Try it live — select two players, pick a surface, and get an instant prediction.">
-  <title>Tennis Match Prediction AI — Built from Scratch with NumPy</title>
+  <title>ATP Tennis Match Predictor — ANN Built from Scratch with NumPy</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎾</text></svg>">
@@ -26,7 +26,7 @@
     <div class="container">
       <div class="nav-logo">
         <span class="logo-icon">🎾</span>
-        <span class="logo-text"><span>TennisAI</span></span>
+        <span class="logo-text"><span>AcePredict</span></span>
       </div>
       <ul class="nav-links">
         <li><a href="#predict">Predict</a></li>
@@ -53,7 +53,7 @@
 
       <h1>
         Tennis Match<br>
-        <span class="gradient-text">Prediction AI</span>
+        <span class="gradient-text">Predictor</span>
       </h1>
 
       <p class="hero-subtitle">
@@ -92,7 +92,8 @@
           <span class="section-label">⚡ Live Prediction</span>
           <h2 class="section-title">Predict a Match</h2>
           <p class="section-subtitle" style="margin: 0 auto;">
-            Select two ATP players and a surface — our AI computes 37 features automatically and generates a prediction.
+            Select two ATP players and a surface — our model computes 37 features automatically and generates a
+            prediction.
           </p>
         </div>
 
@@ -544,6 +545,18 @@
           </ul>
         </div>
       </div>
+
+      <!-- Confidence Distribution Chart -->
+      <div class="confidence-chart fade-in" style="margin-top: 48px;">
+        <div class="nn-diagram">
+          <div class="nn-title">Prediction Confidence Distribution</div>
+          <div class="nn-subtitle">How confident is the model when it's right vs. wrong? Higher confidence = more
+            correct predictions.</div>
+          <img src="confidence_distribution.png"
+            alt="Prediction Confidence Distribution for Correct vs Wrong Predictions"
+            style="width: 100%; max-width: 800px; margin: 0 auto; display: block; border-radius: 12px;">
+        </div>
+      </div>
     </div>
   </section>
 
@@ -578,11 +591,11 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-left">
-          🎾 Tennis Match Prediction AI — Built by Kutay Koray
+          🎾 ATP Tennis Match Predictor — Built by Kutay Koray
         </div>
         <div class="footer-links">
           <a href="https://github.com/KutayKoray/ANN" target="_blank">GitHub</a>
-          <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/kutay-koray-ba34b8236/" target="_blank">LinkedIn</a>
         </div>
       </div>
     </div>
