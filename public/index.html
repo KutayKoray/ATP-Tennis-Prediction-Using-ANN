@@ -101,27 +101,31 @@
       <div class="how-grid">
         <div class="how-step fade-in">
           <span class="how-step-number">Step 01</span>
-          <div class="how-step-icon">🔍</div>
-          <h3>Player Lookup</h3>
-          <p>Search 65,000+ players across 57 years of ATP data. Match names to historical records.</p>
+          <div class="how-step-icon">⚙️</div>
+          <h3>Feature Engineering</h3>
+          <p>Extract 37 features from 195K+ matches — win rates, serve stats, head-to-head, surface form, and rankings
+            across 57 years of ATP data.</p>
         </div>
         <div class="how-step fade-in">
           <span class="how-step-number">Step 02</span>
-          <div class="how-step-icon">⚙️</div>
-          <h3>Feature Engineering</h3>
-          <p>Compute 37 features — career win rates, serve stats, head-to-head, surface performance, and more.</p>
+          <div class="how-step-icon">🏗️</div>
+          <h3>Model Architecture</h3>
+          <p>Design a 37→128→64→1 network with He parameter initialization, Leaky ReLU activations, and L2
+            regularization — all implemented from scratch.</p>
         </div>
         <div class="how-step fade-in">
           <span class="how-step-number">Step 03</span>
-          <div class="how-step-icon">📐</div>
-          <h3>Normalization</h3>
-          <p>StandardScaler normalization (mean=0, std=1) — critical for L2 regularization and model accuracy.</p>
+          <div class="how-step-icon">🔄</div>
+          <h3>Training Pipeline</h3>
+          <p>Forward propagation, backpropagation, binary cross-entropy cost, and Adam optimizer — built layer by layer
+            with only NumPy.</p>
         </div>
         <div class="how-step fade-in">
           <span class="how-step-number">Step 04</span>
           <div class="how-step-icon">🎯</div>
           <h3>Prediction</h3>
-          <p>Forward propagation through 37→128→64→1 network with Leaky ReLU + Sigmoid outputs a win probability.</p>
+          <p>Forward propagation through the trained network with Sigmoid output to produce a win probability for any
+            two players on any surface.</p>
         </div>
       </div>
 
