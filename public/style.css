@@ -1290,6 +1290,10 @@ a:hover {
 
 /* ─── Responsive ──────────────────────────────────────────── */
 @media (max-width: 900px) {
+  :root {
+    --section-padding: 60px 0;
+  }
+
   .hero-stats {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1322,45 +1326,223 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
-  .nn-layers {
-    flex-wrap: wrap;
-  }
-
   .nav-links {
     display: none;
   }
 
   .ibm-table-wrapper {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Neural network diagram mobile */
+  .nn-diagram {
+    padding: 24px 12px;
+  }
+
+  .nn-canvas-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nn-layer-labels {
+    padding: 12px 10px 0;
+    gap: 4px;
+  }
+
+  .nn-label-name {
+    font-size: 0.72rem;
+  }
+
+  .nn-label-count {
+    font-size: 0.62rem;
+  }
+
+  .nn-label-act {
+    font-size: 0.58rem;
+  }
+
+  /* Report card mobile */
+  .report-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .report-card {
+    padding: 32px 20px;
+  }
+
+  .report-icon {
+    font-size: 3rem;
+  }
+
+  .report-text .section-subtitle {
+    margin: 0 auto 24px;
+  }
+
+  /* H2H value smaller on mobile */
+  .h2h-value {
+    font-size: 1rem;
+  }
+
+  .result-winner-name {
+    font-size: 1.6rem;
   }
 }
 
 @media (max-width: 600px) {
+  :root {
+    --section-padding: 48px 0;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .hero {
+    padding-top: 70px;
+    min-height: auto;
+    padding-bottom: 48px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 32px;
+  }
+
+  .hero-badge {
+    font-size: 0.7rem;
+    padding: 6px 14px;
+    margin-bottom: 20px;
+  }
+
   .hero-stats {
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 16px 10px;
   }
 
   .stat-value {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
   }
 
   .how-grid {
     grid-template-columns: 1fr;
   }
 
+  .how-step {
+    padding: 24px 16px;
+  }
+
   .prediction-card {
-    padding: 24px;
+    padding: 20px 16px;
   }
 
   .result-card {
-    padding: 24px;
+    padding: 20px 16px;
+  }
+
+  .result-winner-name {
+    font-size: 1.3rem;
+  }
+
+  /* Quick matchup buttons */
+  .quick-matchups {
+    gap: 8px;
+  }
+
+  .quick-matchup-btn {
+    font-size: 0.72rem;
+    padding: 6px 12px;
+  }
+
+  /* Neural network - scroll horizontally on very small screens */
+  .nn-diagram {
+    padding: 16px 8px;
+  }
+
+  .nn-title {
+    font-size: 0.95rem;
+  }
+
+  .nn-subtitle {
+    font-size: 0.75rem;
+    margin-bottom: 16px;
+  }
+
+  .nn-badge {
+    font-size: 0.72rem;
+    padding: 6px 14px;
+  }
+
+  /* IBM table compact */
+  .ibm-table th,
+  .ibm-table td {
+    padding: 10px 8px;
+    font-size: 0.75rem;
+  }
+
+  .accuracy-bar {
+    width: 50px;
+  }
+
+  /* Section titles */
+  .section-title {
+    font-size: 1.4rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .section-label {
+    font-size: 0.68rem;
+  }
+
+  /* Tech cards */
+  .tech-card {
+    padding: 20px 16px;
+  }
+
+  .tech-card li {
+    font-size: 0.8rem;
+  }
+
+  /* IBM summary compact */
+  .ibm-summary-val {
+    font-size: 1.4rem;
+  }
+
+  /* Download button */
+  .download-btn {
+    padding: 12px 24px;
+    font-size: 0.85rem;
+  }
+
+  .footer {
+    padding: 40px 0 24px;
   }
 
   .footer-content {
     flex-direction: column;
     gap: 16px;
     text-align: center;
+  }
+
+  .footer-left {
+    font-size: 0.75rem;
   }
 }
 

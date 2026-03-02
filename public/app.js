@@ -352,27 +352,50 @@ function initNeuralNetwork() {
     const canvas = document.getElementById('nn-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
+    const wrapper = canvas.parentElement;
+
+    // Responsive sizing
+    function getSize() {
+        const containerW = wrapper.clientWidth || 900;
+        const W = Math.min(containerW, 900);
+        const H = Math.round(W * 0.47); // maintain aspect ratio
+        return { W, H };
+    }
+
+    let { W, H } = getSize();
+    const isMobile = W < 500;
 
     // High-DPI support
     const dpr = window.devicePixelRatio || 1;
-    const W = 900;
-    const H = 420;
-    canvas.width = W * dpr;
-    canvas.height = H * dpr;
-    canvas.style.width = W + 'px';
-    canvas.style.height = H + 'px';
-    ctx.scale(dpr, dpr);
 
-    // Layer config: [neuronCount shown, color]
-    const layers = [
-        { n: 7, color: '#00e5ff', glow: 'rgba(0, 229, 255, %%)', label: '37' },     // Input
-        { n: 10, color: '#a855f7', glow: 'rgba(168, 85, 247, %%)', label: '128' },   // Hidden 1
-        { n: 7, color: '#a855f7', glow: 'rgba(168, 85, 247, %%)', label: '64' },     // Hidden 2
-        { n: 1, color: '#39ff14', glow: 'rgba(57, 255, 20, %%)', label: '1' },       // Output
+    function setupCanvas() {
+        const size = getSize();
+        W = size.W;
+        H = size.H;
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        canvas.style.width = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
+    }
+    setupCanvas();
+
+    // Layer config — fewer neurons on mobile for clarity
+    const layers = isMobile ? [
+        { n: 4, color: '#00e5ff', glow: 'rgba(0, 229, 255, %%)', label: '37' },
+        { n: 6, color: '#a855f7', glow: 'rgba(168, 85, 247, %%)', label: '128' },
+        { n: 4, color: '#a855f7', glow: 'rgba(168, 85, 247, %%)', label: '64' },
+        { n: 1, color: '#39ff14', glow: 'rgba(57, 255, 20, %%)', label: '1' },
+    ] : [
+        { n: 7, color: '#00e5ff', glow: 'rgba(0, 229, 255, %%)', label: '37' },
+        { n: 10, color: '#a855f7', glow: 'rgba(168, 85, 247, %%)', label: '128' },
+        { n: 7, color: '#a855f7', glow: 'rgba(168, 85, 247, %%)', label: '64' },
+        { n: 1, color: '#39ff14', glow: 'rgba(57, 255, 20, %%)', label: '1' },
     ];
 
-    const padding = { x: 80, y: 35 };
-    const neuronRadius = 10;
+    const padding = { x: isMobile ? 40 : 80, y: isMobile ? 25 : 35 };
+    const neuronRadius = isMobile ? 7 : 10;
     const layerX = layers.map((_, i) => padding.x + i * ((W - padding.x * 2) / (layers.length - 1)));
 
     // Compute neuron Y positions for each layer
@@ -390,11 +413,10 @@ function initNeuralNetwork() {
 
     // Signal particles
     const particles = [];
-    const MAX_PARTICLES = 35;
+    const MAX_PARTICLES = isMobile ? 15 : 35;
 
     function spawnParticle() {
         if (particles.length >= MAX_PARTICLES) return;
-        // Pick a random connection between adjacent layers
         const li = Math.floor(Math.random() * (layers.length - 1));
         const from = neurons[li][Math.floor(Math.random() * neurons[li].length)];
         const to = neurons[li + 1][Math.floor(Math.random() * neurons[li + 1].length)];
@@ -405,7 +427,7 @@ function initNeuralNetwork() {
             t: 0,
             speed: 0.008 + Math.random() * 0.012,
             color,
-            size: 2 + Math.random() * 2
+            size: isMobile ? 1.5 + Math.random() * 1.5 : 2 + Math.random() * 2
         });
     }
 
@@ -421,7 +443,7 @@ function initNeuralNetwork() {
                     ctx.moveTo(from.x, from.y);
                     ctx.lineTo(to.x, to.y);
                     ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
-                    ctx.lineWidth = 0.8;
+                    ctx.lineWidth = isMobile ? 0.5 : 0.8;
                     ctx.stroke();
                 }
             }
@@ -473,7 +495,7 @@ function initNeuralNetwork() {
 
             const x = p.fromX + (p.toX - p.fromX) * p.t;
             const y = p.fromY + (p.toY - p.fromY) * p.t;
-            const alpha = Math.sin(p.t * Math.PI); // Fade in/out
+            const alpha = Math.sin(p.t * Math.PI);
 
             // Glowing particle trail
             const grad = ctx.createRadialGradient(x, y, 0, x, y, p.size * 4);
@@ -498,22 +520,19 @@ function initNeuralNetwork() {
     }
 
     function drawDotIndicators() {
-        // Show "..." dots to indicate there are more neurons
         const dotsColor = 'rgba(255, 255, 255, 0.25)';
         for (let li = 0; li < layers.length; li++) {
-            if (layers[li].n < 3) continue; // No dots for output layer
+            if (layers[li].n < 3) continue;
             const x = layerX[li];
             const topY = neurons[li][0].y;
             const botY = neurons[li][neurons[li].length - 1].y;
             const midY = (topY + botY) / 2;
 
-            // Ellipsis above and below the middle
             for (const offsetY of [midY - 8, midY, midY + 8]) {
-                // Don't draw if too close to a neuron
                 const tooClose = neurons[li].some(n => Math.abs(n.y - offsetY) < 18);
                 if (!tooClose) {
                     ctx.beginPath();
-                    ctx.arc(x + 22, offsetY, 1.8, 0, Math.PI * 2);
+                    ctx.arc(x + (isMobile ? 14 : 22), offsetY, 1.8, 0, Math.PI * 2);
                     ctx.fillStyle = dotsColor;
                     ctx.fill();
                 }
@@ -527,17 +546,12 @@ function initNeuralNetwork() {
 
     function animate(time) {
         ctx.clearRect(0, 0, W, H);
-
         drawConnections();
         drawNeurons(time);
-
-        // Spawn particles periodically
         spawnTimer++;
-        if (spawnTimer % 3 === 0) spawnParticle();
-
+        if (spawnTimer % (isMobile ? 5 : 3) === 0) spawnParticle();
         drawParticles();
         drawDotIndicators();
-
         animFrameId = requestAnimationFrame(animate);
     }
 
