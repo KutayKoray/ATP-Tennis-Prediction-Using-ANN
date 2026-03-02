@@ -7,6 +7,11 @@
   <meta name="description"
     content="A neural network built from scratch that predicts ATP tennis match outcomes. Try it live — select two players, pick a surface, and get an instant prediction.">
   <title>ATP Tennis Match Predictor — ANN Built from Scratch with NumPy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎾</text></svg>">
@@ -36,7 +41,7 @@
         <li class="nav-section-link"><a href="#report">Report</a></li>
         <li><a href="presentation.html">Presentation</a></li>
       </ul>
-      <a href="https://github.com/KutayKoray/ANN" target="_blank" class="nav-github">
+      <a href="https://github.com/KutayKoray/ANN" target="_blank" rel="noopener noreferrer" class="nav-github">
         ⭐ GitHub
       </a>
     </div>
@@ -100,18 +105,16 @@
 
         <!-- Quick Matchups -->
         <div class="quick-matchups">
-          <button class="quick-matchup-btn"
-            onclick="fillMatchup('Jannik Sinner','Carlos Alcaraz','Grass','Grand Slam')">
+          <button class="quick-matchup-btn" onclick="fillMatchup('Jannik Sinner','Carlos Alcaraz','Grass')">
             ⚡ Sinner vs Alcaraz — Wimbledon
           </button>
-          <button class="quick-matchup-btn" onclick="fillMatchup('Novak Djokovic','Rafael Nadal','Clay','Grand Slam')">
+          <button class="quick-matchup-btn" onclick="fillMatchup('Novak Djokovic','Rafael Nadal','Clay')">
             ⚡ Djokovic vs Nadal — Roland Garros
           </button>
-          <button class="quick-matchup-btn" onclick="fillMatchup('Roger Federer','Rafael Nadal','Grass','Grand Slam')">
+          <button class="quick-matchup-btn" onclick="fillMatchup('Roger Federer','Rafael Nadal','Grass')">
             ⚡ Federer vs Nadal — Wimbledon
           </button>
-          <button class="quick-matchup-btn"
-            onclick="fillMatchup('Daniil Medvedev','Alexander Zverev','Hard','Masters 1000')">
+          <button class="quick-matchup-btn" onclick="fillMatchup('Daniil Medvedev','Alexander Zverev','Hard')">
             ⚡ Medvedev vs Zverev — Masters
           </button>
         </div>
@@ -147,32 +150,6 @@
               <option value="Hard">Hard</option>
               <option value="Clay">Clay</option>
               <option value="Grass">Grass</option>
-            </select>
-          </div>
-          <div>
-            <label for="tournament-select">Tournament Level</label>
-            <select id="tournament-select" class="form-select">
-              <option value="4">Grand Slam</option>
-              <option value="3">Masters 1000</option>
-              <option value="2" selected>ATP 500</option>
-              <option value="1">Other</option>
-            </select>
-          </div>
-          <div>
-            <label for="month-select">Month</label>
-            <select id="month-select" class="form-select">
-              <option value="1">January</option>
-              <option value="2">February</option>
-              <option value="3">March</option>
-              <option value="4">April</option>
-              <option value="5">May</option>
-              <option value="6">June</option>
-              <option value="7">July</option>
-              <option value="8">August</option>
-              <option value="9">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
             </select>
           </div>
         </div>
@@ -595,8 +572,9 @@
           🎾 ATP Tennis Match Predictor — Built by Kutay Koray
         </div>
         <div class="footer-links">
-          <a href="https://github.com/KutayKoray/ANN" target="_blank">GitHub</a>
-          <a href="https://www.linkedin.com/in/kutay-koray-ba34b8236/" target="_blank">LinkedIn</a>
+          <a href="https://github.com/KutayKoray/ANN" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/kutay-koray-ba34b8236/" target="_blank"
+            rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
     </div>

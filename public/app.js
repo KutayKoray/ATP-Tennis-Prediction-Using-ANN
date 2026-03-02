@@ -7,14 +7,11 @@ const API_BASE = '';
 
 // ─── Set current month on load ──────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-    const monthSelect = document.getElementById('month-select');
-    const now = new Date();
-    monthSelect.value = now.getMonth() + 1;
-
     initPlayerSearch('player1-input', 'player1-dropdown');
     initPlayerSearch('player2-input', 'player2-dropdown');
     initStatCounters();
     initScrollAnimations();
+    initNeuralNetwork();
 });
 
 // ═══════════════════════════════════════════════════════════
@@ -51,7 +48,7 @@ function initPlayerSearch(inputId, dropdownId) {
                     dropdown.classList.add('show');
                 }
             } catch (err) {
-                dropdown.innerHTML = '<div class="player-dropdown-empty">⚠️ Backend not connected</div>';
+                dropdown.innerHTML = '<div class="player-dropdown-empty">⚠️ Server is warming up — please try again in a few seconds</div>';
                 dropdown.classList.add('show');
             }
         }, 250);
@@ -106,7 +103,12 @@ function highlightMatch(text, query) {
 }
 
 function escapeHtml(str) {
-    return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/'/g, "\\'")
+        .replace(/"/g, '&quot;');
 }
 
 function escapeRegex(str) {
@@ -118,16 +120,10 @@ function escapeRegex(str) {
 // QUICK MATCHUPS
 // ═══════════════════════════════════════════════════════════
 
-function fillMatchup(p1, p2, surface, tournament) {
+function fillMatchup(p1, p2, surface) {
     document.getElementById('player1-input').value = p1;
     document.getElementById('player2-input').value = p2;
     document.getElementById('surface-select').value = surface;
-
-    // Map tournament text to value
-    const tourneyMap = {
-        'Grand Slam': '4', 'Masters 1000': '3', 'ATP 500': '2', 'Other': '1'
-    };
-    document.getElementById('tournament-select').value = tourneyMap[tournament] || '2';
 
     // Scroll to predict section smoothly
     document.getElementById('predict').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -572,10 +568,8 @@ function initNeuralNetwork() {
     observer.observe(canvas);
 }
 
-// Init on load
-document.addEventListener('DOMContentLoaded', () => {
-    initNeuralNetwork();
-});
+// Init neural network on load (merged into the main DOMContentLoaded at the top — line 9)
+// initNeuralNetwork is called from the primary listener.
 
 
 // ═══════════════════════════════════════════════════════════

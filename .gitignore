@@ -10,3 +10,4 @@ __pycache__/
 *.pyc
 backend/.venv/
 .venv/
+backend/player_stats_cache.pkl
