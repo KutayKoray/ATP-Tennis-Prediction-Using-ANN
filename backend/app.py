@@ -162,53 +162,58 @@ def predict():
         return jsonify({'error': f"Invalid surface: '{surface}'. Must be Hard, Clay, or Grass"}), 400
 
     # Build feature vector
-    result = stats_engine.build_feature_vector(player1, player2, surface_cap)
+    try:
+        result = stats_engine.build_feature_vector(player1, player2, surface_cap)
 
-    if result['error']:
-        return jsonify({'error': result['error']}), 404
+        if result['error']:
+            return jsonify({'error': result['error']}), 404
 
-    # Run prediction
-    prediction = predictor.predict_match(result['features'])
+        # Run prediction
+        prediction = predictor.predict_match(result['features'])
 
-    # Build response
-    response = {
-        'player1': {
-            'name': result['p1_name'],
-            'win_probability': prediction['p1_win_probability'],
-            'stats': {
-                'age': round(result['p1_stats']['age'], 1),
-                'height': result['p1_stats']['ht'],
-                'hand': 'Left' if result['p1_stats']['is_lefty'] else 'Right',
-                'rank_points': result['p1_stats']['rank_points'],
-                'career_win_rate': round(result['p1_stats']['career_win_rate'] * 100, 1),
-                'surface_win_rate': round(result['p1_stats']['surface_win_rate'] * 100, 1),
-                'recent_form': round(result['p1_stats']['recent_form'] * 100, 1),
-                'avg_ace_rate': round(result['p1_stats']['avg_ace_rate'] * 100, 2),
-                'avg_1st_serve_pct': round(result['p1_stats']['avg_1st_serve_pct'] * 100, 1),
+        # Build response
+        response = {
+            'player1': {
+                'name': result['p1_name'],
+                'win_probability': prediction['p1_win_probability'],
+                'stats': {
+                    'age': round(result['p1_stats']['age'], 1),
+                    'height': result['p1_stats']['ht'],
+                    'hand': 'Left' if result['p1_stats']['is_lefty'] else 'Right',
+                    'rank_points': result['p1_stats']['rank_points'],
+                    'career_win_rate': round(result['p1_stats']['career_win_rate'] * 100, 1),
+                    'surface_win_rate': round(result['p1_stats']['surface_win_rate'] * 100, 1),
+                    'recent_form': round(result['p1_stats']['recent_form'] * 100, 1),
+                    'avg_ace_rate': round(result['p1_stats']['avg_ace_rate'] * 100, 2),
+                    'avg_1st_serve_pct': round(result['p1_stats']['avg_1st_serve_pct'] * 100, 1),
+                },
             },
-        },
-        'player2': {
-            'name': result['p2_name'],
-            'win_probability': prediction['p2_win_probability'],
-            'stats': {
-                'age': round(result['p2_stats']['age'], 1),
-                'height': result['p2_stats']['ht'],
-                'hand': 'Left' if result['p2_stats']['is_lefty'] else 'Right',
-                'rank_points': result['p2_stats']['rank_points'],
-                'career_win_rate': round(result['p2_stats']['career_win_rate'] * 100, 1),
-                'surface_win_rate': round(result['p2_stats']['surface_win_rate'] * 100, 1),
-                'recent_form': round(result['p2_stats']['recent_form'] * 100, 1),
-                'avg_ace_rate': round(result['p2_stats']['avg_ace_rate'] * 100, 2),
-                'avg_1st_serve_pct': round(result['p2_stats']['avg_1st_serve_pct'] * 100, 1),
+            'player2': {
+                'name': result['p2_name'],
+                'win_probability': prediction['p2_win_probability'],
+                'stats': {
+                    'age': round(result['p2_stats']['age'], 1),
+                    'height': result['p2_stats']['ht'],
+                    'hand': 'Left' if result['p2_stats']['is_lefty'] else 'Right',
+                    'rank_points': result['p2_stats']['rank_points'],
+                    'career_win_rate': round(result['p2_stats']['career_win_rate'] * 100, 1),
+                    'surface_win_rate': round(result['p2_stats']['surface_win_rate'] * 100, 1),
+                    'recent_form': round(result['p2_stats']['recent_form'] * 100, 1),
+                    'avg_ace_rate': round(result['p2_stats']['avg_ace_rate'] * 100, 2),
+                    'avg_1st_serve_pct': round(result['p2_stats']['avg_1st_serve_pct'] * 100, 1),
+                },
             },
-        },
-        'predicted_winner': result['p1_name'] if prediction['predicted_winner'] == 1 else result['p2_name'],
-        'confidence': prediction['confidence'],
-        'surface': surface_cap,
-        'h2h': result['h2h'],
-    }
+            'predicted_winner': result['p1_name'] if prediction['predicted_winner'] == 1 else result['p2_name'],
+            'confidence': prediction['confidence'],
+            'surface': surface_cap,
+            'h2h': result['h2h'],
+        }
 
-    return jsonify(response)
+        return jsonify(response)
+
+    except Exception as e:
+        print(f"[Predict] Error: {e}")
+        return jsonify({'error': 'Something went wrong while processing the prediction. Please try again.'}), 500
 
 
 # ── Run server ───────────────────────────────────────────────────────────────
