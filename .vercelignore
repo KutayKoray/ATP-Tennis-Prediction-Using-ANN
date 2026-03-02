@@ -1,0 +1,8 @@
+# Exclude large files not needed for Vercel deployment
+datas/
+notebooks/
+backend/.venv/
+backend/player_stats_cache.pkl
+.venv/
+*.ipynb
+__pycache__/

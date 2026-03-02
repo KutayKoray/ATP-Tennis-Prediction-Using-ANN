@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="A neural network built from scratch that predicts ATP tennis match outcomes. Try it live — select two players, pick a surface, and get an instant prediction.">
+  <title>Tennis Match Prediction AI — Built from Scratch with NumPy</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎾</text></svg>">
+</head>
+
+<body>
+
+  <!-- Background effects -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-logo">
+        <span class="logo-icon">🎾</span>
+        <span class="logo-text"><span>TennisAI</span></span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#predict">Predict</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#technical">Technical</a></li>
+        <li><a href="#report">Report</a></li>
+      </ul>
+      <a href="https://github.com/KutayKoray/ANN" target="_blank" class="nav-github">
+        ⭐ GitHub
+      </a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO SECTION
+       ═══════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        Live Demo — Try it now
+      </div>
+
+      <h1>
+        Tennis Match<br>
+        <span class="gradient-text">Prediction AI</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        A neural network built from scratch with NumPy that <em>beat IBM's SlamTracker at Wimbledon 2025.</em>
+        Select two players, pick a surface, and get an instant prediction.
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-value" data-count="67.4" data-suffix="%">0%</div>
+          <div class="stat-label">Test Accuracy</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" data-count="66.1" data-suffix="%">0%</div>
+          <div class="stat-label">Wimbledon 2025</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" data-count="1.6" data-suffix="%" data-prefix="+">0%</div>
+          <div class="stat-label">vs IBM SlamTracker</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" data-count="195" data-suffix="K+" data-decimals="0">0</div>
+          <div class="stat-label">Matches Trained</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PREDICTION SECTION
+       ═══════════════════════════════════════════════════════ -->
+  <section class="prediction-section" id="predict">
+    <div class="container">
+      <div class="prediction-card fade-in">
+        <div class="form-header">
+          <span class="section-label">⚡ Live Prediction</span>
+          <h2 class="section-title">Predict a Match</h2>
+          <p class="section-subtitle" style="margin: 0 auto;">
+            Select two ATP players and a surface — our AI computes 37 features automatically and generates a prediction.
+          </p>
+        </div>
+
+        <!-- Quick Matchups -->
+        <div class="quick-matchups">
+          <button class="quick-matchup-btn"
+            onclick="fillMatchup('Jannik Sinner','Carlos Alcaraz','Grass','Grand Slam')">
+            ⚡ Sinner vs Alcaraz — Wimbledon
+          </button>
+          <button class="quick-matchup-btn" onclick="fillMatchup('Novak Djokovic','Rafael Nadal','Clay','Grand Slam')">
+            ⚡ Djokovic vs Nadal — Roland Garros
+          </button>
+          <button class="quick-matchup-btn" onclick="fillMatchup('Roger Federer','Rafael Nadal','Grass','Grand Slam')">
+            ⚡ Federer vs Nadal — Wimbledon
+          </button>
+          <button class="quick-matchup-btn"
+            onclick="fillMatchup('Daniil Medvedev','Alexander Zverev','Hard','Masters 1000')">
+            ⚡ Medvedev vs Zverev — Masters
+          </button>
+        </div>
+
+        <!-- Player Inputs -->
+        <div class="form-versus">
+          <div class="player-input-group">
+            <label for="player1-input">Player 1</label>
+            <div class="player-search-wrapper">
+              <input type="text" id="player1-input" class="player-search-input" placeholder="Search player name..."
+                autocomplete="off" data-player="1">
+              <div class="player-dropdown" id="player1-dropdown"></div>
+            </div>
+          </div>
+
+          <div class="vs-badge">VS</div>
+
+          <div class="player-input-group">
+            <label for="player2-input">Player 2</label>
+            <div class="player-search-wrapper">
+              <input type="text" id="player2-input" class="player-search-input" placeholder="Search player name..."
+                autocomplete="off" data-player="2">
+              <div class="player-dropdown" id="player2-dropdown"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Options Row -->
+        <div class="form-options">
+          <div>
+            <label for="surface-select">Surface</label>
+            <select id="surface-select" class="form-select">
+              <option value="Hard">Hard</option>
+              <option value="Clay">Clay</option>
+              <option value="Grass">Grass</option>
+            </select>
+          </div>
+          <div>
+            <label for="tournament-select">Tournament Level</label>
+            <select id="tournament-select" class="form-select">
+              <option value="4">Grand Slam</option>
+              <option value="3">Masters 1000</option>
+              <option value="2" selected>ATP 500</option>
+              <option value="1">Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="month-select">Month</label>
+            <select id="month-select" class="form-select">
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Predict Button -->
+        <div class="predict-btn-wrapper">
+          <button class="predict-btn" id="predict-btn" onclick="predictMatch()">
+            <span class="btn-text">🎯 Predict Winner</span>
+            <span class="btn-spinner"></span>
+          </button>
+        </div>
+
+        <!-- Error Message -->
+        <div class="error-message" id="error-message"></div>
+
+        <!-- Prediction Result -->
+        <div class="prediction-result" id="prediction-result">
+          <div class="result-card">
+            <div class="result-header">
+              <div class="result-winner-label">🏆 Predicted Winner</div>
+              <div class="result-winner-name" id="result-winner-name">—</div>
+              <div class="result-confidence">
+                Model confidence: <span id="result-confidence">—</span>
+              </div>
+            </div>
+
+            <!-- Probability Bar -->
+            <div class="probability-bar-container">
+              <div class="probability-labels">
+                <span class="prob-label" id="prob-p1-label">
+                  <span id="prob-p1-name">Player 1</span><br>
+                  <span class="prob-pct" id="prob-p1-pct">0%</span>
+                </span>
+                <span class="prob-label" id="prob-p2-label" style="text-align:right;">
+                  <span id="prob-p2-name">Player 2</span><br>
+                  <span class="prob-pct" id="prob-p2-pct">0%</span>
+                </span>
+              </div>
+              <div class="probability-bar">
+                <div class="probability-fill" id="probability-fill" style="width: 50%;"></div>
+              </div>
+            </div>
+
+            <!-- H2H -->
+            <div class="h2h-row">
+              <div class="h2h-label">Head to Head Record</div>
+              <div class="h2h-value" id="h2h-value">—</div>
+            </div>
+
+            <!-- Player Stats -->
+            <div class="result-stats">
+              <div class="result-player-card" id="result-p1-card">
+                <div class="result-player-name" id="result-p1-name">Player 1</div>
+                <div id="result-p1-stats"></div>
+              </div>
+              <div class="result-player-card" id="result-p2-card">
+                <div class="result-player-name" id="result-p2-name">Player 2</div>
+                <div id="result-p2-stats"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HOW IT WORKS
+       ═══════════════════════════════════════════════════════ -->
+  <section class="how-section" id="how-it-works">
+    <div class="container">
+      <span class="section-label">🧠 Behind the Scenes</span>
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">From player names to win probability in 4 steps — no TensorFlow, no PyTorch, just
+        NumPy.</p>
+
+      <div class="how-grid">
+        <div class="how-step fade-in">
+          <span class="how-step-number">Step 01</span>
+          <div class="how-step-icon">🔍</div>
+          <h3>Player Lookup</h3>
+          <p>Search 65,000+ players across 57 years of ATP data. Match names to historical records.</p>
+        </div>
+        <div class="how-step fade-in">
+          <span class="how-step-number">Step 02</span>
+          <div class="how-step-icon">⚙️</div>
+          <h3>Feature Engineering</h3>
+          <p>Compute 37 features — career win rates, serve stats, head-to-head, surface performance, and more.</p>
+        </div>
+        <div class="how-step fade-in">
+          <span class="how-step-number">Step 03</span>
+          <div class="how-step-icon">📐</div>
+          <h3>Normalization</h3>
+          <p>StandardScaler normalization (mean=0, std=1) — critical for L2 regularization and model accuracy.</p>
+        </div>
+        <div class="how-step fade-in">
+          <span class="how-step-number">Step 04</span>
+          <div class="how-step-icon">🎯</div>
+          <h3>Prediction</h3>
+          <p>Forward propagation through 37→128→64→1 network with Leaky ReLU + Sigmoid outputs a win probability.</p>
+        </div>
+      </div>
+
+      <!-- Neural Network Diagram -->
+      <div class="nn-diagram fade-in">
+        <div class="nn-title">Network Architecture</div>
+        <div class="nn-subtitle">2 Hidden Layer ANN — Built from scratch with NumPy</div>
+
+        <div class="nn-canvas-wrapper">
+          <canvas id="nn-canvas" width="900" height="420"></canvas>
+          <!-- Layer labels below canvas -->
+          <div class="nn-layer-labels">
+            <div class="nn-label-group">
+              <span class="nn-label-name">Input</span>
+              <span class="nn-label-count">37 features</span>
+            </div>
+            <div class="nn-label-group">
+              <span class="nn-label-name">Hidden 1</span>
+              <span class="nn-label-count">128 neurons</span>
+              <span class="nn-label-act">Leaky ReLU</span>
+            </div>
+            <div class="nn-label-group">
+              <span class="nn-label-name">Hidden 2</span>
+              <span class="nn-label-count">64 neurons</span>
+              <span class="nn-label-act">Leaky ReLU</span>
+            </div>
+            <div class="nn-label-group">
+              <span class="nn-label-name">Output</span>
+              <span class="nn-label-count">1 neuron</span>
+              <span class="nn-label-act">Sigmoid</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="nn-badge">✨ No TensorFlow • No PyTorch • Pure NumPy</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       IBM COMPARISON
+       ═══════════════════════════════════════════════════════ -->
+  <section class="ibm-section" id="results">
+    <div class="container">
+      <span class="section-label">📊 Performance</span>
+      <h2 class="section-title">Wimbledon 2025 — My Model vs IBM SlamTracker</h2>
+      <p class="section-subtitle">Round-by-round prediction accuracy comparison across all 127 matches.</p>
+
+      <div class="ibm-summary">
+        <div class="ibm-summary-card fade-in">
+          <div class="ibm-summary-val green">66.1%</div>
+          <div class="ibm-summary-label">My Model (84/127)</div>
+        </div>
+        <div class="ibm-summary-card fade-in">
+          <div class="ibm-summary-val cyan">64.6%</div>
+          <div class="ibm-summary-label">IBM SlamTracker (82/127)</div>
+        </div>
+        <div class="ibm-summary-card fade-in">
+          <div class="ibm-summary-val green">+1.6%</div>
+          <div class="ibm-summary-label">Better Than IBM (+2 matches)</div>
+        </div>
+      </div>
+
+      <div class="ibm-table-wrapper fade-in">
+        <table class="ibm-table">
+          <thead>
+            <tr>
+              <th>Round</th>
+              <th>My Model</th>
+              <th></th>
+              <th>IBM SlamTracker</th>
+              <th></th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Round 1</td>
+              <td>
+                <div class="accuracy-bar-cell">
+                  <div class="accuracy-bar">
+                    <div class="accuracy-fill my-model" style="width:59.4%"></div>
+                  </div>59.4%
+                </div>
+              </td>
+              <td>38/64</td>
+              <td>
+                <div class="accuracy-bar-cell">
+                  <div class="accuracy-bar">
+                    <div class="accuracy-fill ibm" style="width:56.2%"></div>
+                  </div>56.2%
+                </div>
+              </td>
+              <td>36/64</td>
+              <td><span class="win-badge win">+2</span></td>
+            </tr>
+            <tr>
+              <td>Round 2</td>
+              <td>
+                <div class="accuracy-bar-cell">
+                  <div class="accuracy-bar">
+                    <div class="accuracy-fill my-model" style="width:65.6%"></div>
+                  </div>65.6%
+                </div>
+              </td>
+              <td>21/32</td>
+              <td>
+                <div class="accuracy-bar-cell">
+                  <div class="accuracy-bar">
+                    <div class="accuracy-fill ibm" style="width:68.8%"></div>
+                  </div>68.8%
+                </div>
+              </td>
+              <td>22/32</td>
+              <td><span class="win-badge loss">-1</span></td>
+            </tr>
+            <tr class="highlight-row">
+              <td>Round 3</td>
+              <td>
+                <div class="accuracy-bar-cell">
+                  <div class="accuracy-bar">
+                    <div class="accuracy-fill my-model" style="width:75%"></div>
+                  </div>75.0%
+                </div>
+              </td>
+              <td>12/16</td>
+              <td>
+                <div class="accuracy-bar-cell">
+                  <div class="accuracy-bar">
+                    <div class="accuracy-fill ibm" style="width:56.2%"></div>
+                  </div>56.2%
+                </div>
+              </td>
+              <td>9/16</td>
+              <td><span class="win-badge win">+3</span></td>
+            </tr>
+            <tr class="highlight-row">
+              <td>Round 4</td>
+              <td>
+                <div class="accuracy-bar-cell">
+                  <div class="accuracy-bar">
+                    <div class="accuracy-fill my-model" style="width:100%"></div>
+                  </div>100%
+                </div>
+              </td>
+              <td>8/8</td>
+              <td>
+                <div class="accuracy-bar-cell">
+                  <div class="accuracy-bar">
+                    <div class="accuracy-fill ibm" style="width:100%"></div>
+                  </div>100%
+                </div>
+              </td>
+              <td>8/8</td>
+              <td><span class="win-badge tie">Tie</span></td>
+            </tr>
+            <tr>
+              <td>Quarter Finals</td>
+              <td>
+                <div class="accuracy-bar-cell">
+                  <div class="accuracy-bar">
+                    <div class="accuracy-fill my-model" style="width:50%"></div>
+                  </div>50.0%
+                </div>
+              </td>
+              <td>2/4</td>
+              <td>
+                <div class="accuracy-bar-cell">
+                  <div class="accuracy-bar">
+                    <div class="accuracy-fill ibm" style="width:100%"></div>
+                  </div>100%
+                </div>
+              </td>
+              <td>4/4</td>
+              <td><span class="win-badge loss">-2</span></td>
+            </tr>
+            <tr class="highlight-row">
+              <td>Semi Finals</td>
+              <td>
+                <div class="accuracy-bar-cell">
+                  <div class="accuracy-bar">
+                    <div class="accuracy-fill my-model" style="width:100%"></div>
+                  </div>100%
+                </div>
+              </td>
+              <td>2/2</td>
+              <td>
+                <div class="accuracy-bar-cell">
+                  <div class="accuracy-bar">
+                    <div class="accuracy-fill ibm" style="width:100%"></div>
+                  </div>100%
+                </div>
+              </td>
+              <td>2/2</td>
+              <td><span class="win-badge tie">Tie</span></td>
+            </tr>
+            <tr class="highlight-row">
+              <td>Final</td>
+              <td>
+                <div class="accuracy-bar-cell">
+                  <div class="accuracy-bar">
+                    <div class="accuracy-fill my-model" style="width:100%"></div>
+                  </div>100%
+                </div>
+              </td>
+              <td>1/1</td>
+              <td>
+                <div class="accuracy-bar-cell">
+                  <div class="accuracy-bar">
+                    <div class="accuracy-fill ibm" style="width:100%"></div>
+                  </div>100%
+                </div>
+              </td>
+              <td>1/1</td>
+              <td><span class="win-badge tie">Tie</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       TECHNICAL DETAILS
+       ═══════════════════════════════════════════════════════ -->
+  <section class="tech-section" id="technical">
+    <div class="container">
+      <span class="section-label">🔧 Under the Hood</span>
+      <h2 class="section-title">Technical Details</h2>
+      <p class="section-subtitle">Everything built from scratch — no ML frameworks used.</p>
+
+      <div class="tech-grid">
+        <div class="tech-card fade-in">
+          <h3>📊 37 Input Features</h3>
+          <ul>
+            <li>Career & surface win rates</li>
+            <li>Recent form (last 20 matches)</li>
+            <li>Serve stats (ace%, df%, 1st serve%)</li>
+            <li>Head-to-head record</li>
+            <li>Ranking points & age</li>
+            <li>Hand matchup encoding</li>
+            <li>Temporal features (month, quarter)</li>
+            <li>Surface one-hot encoding</li>
+          </ul>
+        </div>
+        <div class="tech-card fade-in">
+          <h3>⚙️ Training Configuration</h3>
+          <ul>
+            <li>Optimizer: Adam (β1=0.9, β2=0.999)</li>
+            <li>He weight initialization</li>
+            <li>L2 regularization (λ=0.5)</li>
+            <li>Learning rate: 0.003</li>
+            <li>Early stopping (patience=10)</li>
+            <li>StandardScaler normalization</li>
+            <li>Data: 195K+ ATP matches (1968–2024)</li>
+            <li>Test set: 2024 season</li>
+          </ul>
+        </div>
+        <div class="tech-card fade-in">
+          <h3>🛡️ Data Integrity</h3>
+          <ul>
+            <li>Strict chronological processing</li>
+            <li>No data leakage — stats from past only</li>
+            <li>Randomized P1/P2 assignment</li>
+            <li>Service stats from last 20 matches</li>
+            <li>Diff features removed (reveal winner)</li>
+            <li>Binary features skip normalization</li>
+            <li>Missing values → training median</li>
+            <li>H2H from encounters only</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       TECHNICAL REPORT DOWNLOAD
+       ═══════════════════════════════════════════════════════ -->
+  <section class="report-section" id="report">
+    <div class="container">
+      <div class="report-card fade-in">
+        <div class="report-content">
+          <div class="report-icon">📄</div>
+          <div class="report-text">
+            <span class="section-label">📑 Research Paper</span>
+            <h2 class="section-title">Technical Report</h2>
+            <p class="section-subtitle">
+              Read the full technical report covering data pipeline, feature engineering, model architecture, training
+              methodology, anti-leakage measures, and Wimbledon 2025 benchmark results.
+            </p>
+            <a href="TechnicalReport-Tennis_Match_Prediction_ANN.pdf" download class="download-btn">
+              📥 Download Technical Report (PDF)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          🎾 Tennis Match Prediction AI — Built by Kutay Koray
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/KutayKoray/ANN" target="_blank">GitHub</a>
+          <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

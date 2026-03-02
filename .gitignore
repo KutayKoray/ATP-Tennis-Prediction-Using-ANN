@@ -8,6 +8,5 @@ notebooks/FeatureEngineering/atp_matches_cleaned.csv
 
 __pycache__/
 *.pyc
-*.pkl
 backend/.venv/
 .venv/
