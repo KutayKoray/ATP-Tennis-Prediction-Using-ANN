@@ -328,6 +328,20 @@ a:hover {
   color: var(--text-primary);
 }
 
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 8px;
+  justify-self: end;
+}
+
+.nav-menu {
+  display: contents;
+}
+
 .nav-github {
   display: inline-flex;
   align-items: center;
@@ -1759,20 +1773,75 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
-  .nav-section-link {
-    display: none;
+  .navbar .container {
+    position: relative;
+    padding: 0 16px;
   }
 
-  .nav-page-link {
-    display: list-item;
+  .nav-logo {
+    justify-self: center;
+    grid-column: 2;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    grid-column: 3;
+    justify-self: end;
+  }
+
+  .nav-menu {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    flex-direction: column;
+    padding: 24px;
+    box-shadow: var(--shadow-elevated);
+    gap: 24px;
+    /* Hide initially */
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  .nav-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .nav-links {
-    gap: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+  }
+
+  .nav-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 24px;
   }
 
   .nav-github {
-    display: none;
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .theme-toggle {
+    margin-left: 0;
   }
 
   .ibm-table-wrapper {

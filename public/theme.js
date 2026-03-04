@@ -30,6 +30,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Navbar mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+    if (mobileBtn && navMenu) {
+        mobileBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    }
+
     // Navbar scroll effect (applied to all pages)
     window.addEventListener('scroll', () => {
         const navbar = document.getElementById('navbar');
