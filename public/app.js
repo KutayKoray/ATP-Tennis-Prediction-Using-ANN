@@ -430,6 +430,9 @@ function initNeuralNetwork() {
     // ── Draw Functions ──
 
     function drawConnections() {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const lineColor = isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.08)';
+
         for (let li = 0; li < layers.length - 1; li++) {
             const fromLayer = neurons[li];
             const toLayer = neurons[li + 1];
@@ -438,7 +441,7 @@ function initNeuralNetwork() {
                     ctx.beginPath();
                     ctx.moveTo(from.x, from.y);
                     ctx.lineTo(to.x, to.y);
-                    ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)';
+                    ctx.strokeStyle = lineColor;
                     ctx.lineWidth = isMobile ? 0.5 : 0.8;
                     ctx.stroke();
                 }
@@ -563,15 +566,6 @@ function initNeuralNetwork() {
 let scrollProgress = 0;
 
 window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-        navbar.style.padding = '10px 0';
-        navbar.style.background = 'rgba(250, 249, 246, 0.97)';
-    } else {
-        navbar.style.padding = '16px 0';
-        navbar.style.background = 'rgba(250, 249, 246, 0.9)';
-    }
-
     // Court canvas scroll progress — based on wrapper scroll
     const wrapper = document.getElementById('heroWrapper');
     if (wrapper) {
@@ -645,7 +639,20 @@ function initCourtBall() {
         const scale = 1 + p * 0.6;
         const courtUpPercent = -30 - p * 25; // starts at -30%, moves to -55%
         courtBg.style.transform = `translateX(-50%) translateY(${courtUpPercent}%) scale(${scale})`;
-        courtBg.style.opacity = 0.10 + p * 0.22;
+
+        // Base court opacity increases as you scroll down
+        let courtOp = 0.10 + p * 0.22;
+        let canvasOp = 1.0;
+
+        // Fade out everything at the very end of the scroll (after ball lands)
+        if (p > 0.85) {
+            const fadeOut = (p - 0.85) / 0.15; // 0 to 1
+            courtOp = courtOp * (1 - fadeOut);
+            canvasOp = 1 - fadeOut;
+        }
+
+        courtBg.style.opacity = courtOp;
+        canvas.style.opacity = canvasOp;
 
         ctx.clearRect(0, 0, W, H);
 
@@ -655,7 +662,8 @@ function initCourtBall() {
             return;
         }
 
-        const ballP = Math.min((p - 0.05) / 0.90, 1);
+        // Ball lands at 85% scroll (0.80 range)
+        const ballP = Math.min((p - 0.05) / 0.80, 1);
         const t = ballP;
 
         // Ball trajectory: far-RIGHT corner of court → over net → near-LEFT on our half

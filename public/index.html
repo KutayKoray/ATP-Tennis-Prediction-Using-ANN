@@ -19,6 +19,7 @@
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
+  <script src="theme.js"></script>
 </head>
 
 <body>
@@ -40,9 +41,12 @@
       <ul class="nav-links">
         <li><a href="presentation.html">Presentation</a></li>
       </ul>
-      <a href="https://github.com/KutayKoray/ANN" target="_blank" rel="noopener noreferrer" class="nav-github">
-        ⭐ GitHub
-      </a>
+      <div class="nav-actions">
+        <a href="https://github.com/KutayKoray/ANN" target="_blank" rel="noopener noreferrer" class="nav-github">
+          ⭐ GitHub
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      </div>
     </div>
   </nav>
 
@@ -525,8 +529,9 @@
             <div class="limitation-card">
               <div class="limitation-icon">🎾</div>
               <h4>The Djokovic Paradox</h4>
-              <p>The model struggles with Djokovic specifically (~50% error rate). At 36, his stats suggest decline —
-                yet he won 3 Grand Slams in 2023. Some things numbers can't fully capture.</p>
+              <p>The model struggles with Djokovic (~50% error). At 36, his stats suggest decline, yet he defies
+                numbers. Furthermore, our data captured his 2024 slump (World No. 7) just before his rapid Wimbledon
+                2025 recovery (No. 4).</p>
             </div>
             <div class="limitation-card">
               <div class="limitation-icon">📅</div>
