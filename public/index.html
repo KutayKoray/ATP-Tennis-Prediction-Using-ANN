@@ -34,11 +34,6 @@
         <span class="logo-text"><span>AcePredict</span></span>
       </div>
       <ul class="nav-links">
-        <li class="nav-section-link"><a href="#predict">Predict</a></li>
-        <li class="nav-section-link"><a href="#how-it-works">How It Works</a></li>
-        <li class="nav-section-link"><a href="#results">Results</a></li>
-        <li class="nav-section-link"><a href="#technical">Technical</a></li>
-        <li class="nav-section-link"><a href="#report">Report</a></li>
         <li><a href="presentation.html">Presentation</a></li>
       </ul>
       <a href="https://github.com/KutayKoray/ANN" target="_blank" rel="noopener noreferrer" class="nav-github">
@@ -50,43 +45,50 @@
   <!-- ═══════════════════════════════════════════════════════
        HERO SECTION
        ═══════════════════════════════════════════════════════ -->
-  <section class="hero" id="hero">
-    <div class="container">
-      <div class="hero-badge">
-        <span class="pulse-dot"></span>
-        Live Demo — Try it now
+  <div class="hero-scroll-wrapper" id="heroWrapper">
+    <section class="hero" id="hero">
+      <!-- Court Background Image + Ball Canvas -->
+      <div class="court-bg" id="courtBg">
+        <img src="tennis_court.svg" alt="" class="court-img" id="courtImg">
+        <canvas id="ballCanvas" class="ball-canvas"></canvas>
       </div>
-
-      <h1>
-        Tennis Match<br>
-        <span class="gradient-text">Predictor</span>
-      </h1>
-
-      <p class="hero-subtitle">
-        A neural network built from scratch with NumPy that <em>beat IBM's SlamTracker at Wimbledon 2025.</em>
-        Select two players, pick a surface, and get an instant prediction.
-      </p>
-
-      <div class="hero-stats">
-        <div class="stat-card">
-          <div class="stat-value" data-count="67.4" data-suffix="%">0%</div>
-          <div class="stat-label">Test Accuracy</div>
+      <div class="container">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          Live Demo — Try it now
         </div>
-        <div class="stat-card">
-          <div class="stat-value" data-count="66.1" data-suffix="%">0%</div>
-          <div class="stat-label">Wimbledon 2025</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value" data-count="1.6" data-suffix="%" data-prefix="+">0%</div>
-          <div class="stat-label">vs IBM SlamTracker</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value" data-count="195" data-suffix="K+" data-decimals="0">0</div>
-          <div class="stat-label">Matches Trained</div>
+
+        <h1>
+          Tennis Match<br>
+          <span class="gradient-text">Predictor</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          A neural network built from scratch with NumPy that <em>beat IBM's SlamTracker at Wimbledon 2025.</em>
+          Select two players, pick a surface, and get an instant prediction.
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-value" data-count="67.4" data-suffix="%">0%</div>
+            <div class="stat-label">Test Accuracy</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" data-count="66.1" data-suffix="%">0%</div>
+            <div class="stat-label">Wimbledon 2025</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" data-count="1.6" data-suffix="%" data-prefix="+">0%</div>
+            <div class="stat-label">vs IBM SlamTracker</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" data-count="195" data-suffix="K+" data-decimals="0">0</div>
+            <div class="stat-label">Matches Trained</div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <!-- ═══════════════════════════════════════════════════════
        HOW IT WORKS
@@ -161,80 +163,6 @@
         </div>
 
         <div class="nn-badge">✨ No TensorFlow • No PyTorch • Pure NumPy</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════
-       ABOUT THE PROJECT
-       ═══════════════════════════════════════════════════════ -->
-  <section class="about-section" id="about">
-    <div class="container">
-      <span class="section-label">📖 About the Project</span>
-      <h2 class="section-title">An Honest Look at This Project</h2>
-      <p class="section-subtitle" style="margin: 0 auto;">
-        This isn't a production-ready prediction system — it's a learning journey built from the ground up.
-      </p>
-
-      <div class="about-content fade-in">
-        <div class="about-text">
-          <p>
-            I built this entire neural network from scratch using only NumPy — no TensorFlow, no PyTorch, no shortcuts.
-            The goal was never to build the "best" tennis predictor, but to deeply understand how neural networks
-            actually work under the hood: forward propagation, backpropagation, gradient descent, and everything in
-            between.
-          </p>
-          <p>
-            The model achieves <strong>67.4% test accuracy</strong> and outperformed IBM's SlamTracker at Wimbledon 2025
-            by +1.6%.
-            But numbers only tell part of the story — and I believe in being transparent about where this model falls
-            short.
-          </p>
-        </div>
-
-        <div class="about-limitations">
-          <h3 class="about-limitations-title">
-            <span class="about-limitations-icon">⚠️</span>
-            Known Limitations & Areas for Improvement
-          </h3>
-          <div class="limitation-grid">
-            <div class="limitation-card">
-              <div class="limitation-icon">📊</div>
-              <h4>The Calibration Problem</h4>
-              <p>The model is good at <em>ranking</em> who's more likely to win, but tends to be overconfident in its
-                probability estimates — a known issue called "uncalibrated probability."</p>
-            </div>
-            <div class="limitation-card">
-              <div class="limitation-icon">🎾</div>
-              <h4>The Djokovic Paradox</h4>
-              <p>The model struggles with Djokovic specifically (~50% error rate). At 36, his stats suggest decline —
-                yet he won 3 Grand Slams in 2023. Some things numbers can't fully capture.</p>
-            </div>
-            <div class="limitation-card">
-              <div class="limitation-icon">📅</div>
-              <h4>Data Freshness</h4>
-              <p>Predicting 2025 matches with data ending in 2024 means emerging players and recent form shifts aren't
-                fully reflected in the model's knowledge.</p>
-            </div>
-            <div class="limitation-card">
-              <div class="limitation-icon">🔍</div>
-              <h4>The Challenger Blind Spot</h4>
-              <p>Accuracy drops in early rounds where qualifiers with limited match history face top seeds — less data
-                simply means less reliable predictions.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="about-cta">
-          <p>
-            I dive deeper into all of these challenges — and potential solutions — in my project presentation.
-            If you're curious about the technical details or how this model could be improved, I'd genuinely appreciate
-            you checking it out.
-          </p>
-          <a href="presentation.html" class="about-cta-btn">
-            📽️ View Full Presentation
-          </a>
-        </div>
       </div>
     </div>
   </section>
@@ -547,6 +475,80 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ABOUT THE PROJECT
+       ═══════════════════════════════════════════════════════ -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <span class="section-label">📖 About the Project</span>
+      <h2 class="section-title">An Honest Look at This Project</h2>
+      <p class="section-subtitle" style="margin: 0 auto;">
+        This isn't a production-ready prediction system — it's a learning journey built from the ground up.
+      </p>
+
+      <div class="about-content fade-in">
+        <div class="about-text">
+          <p>
+            I built this entire neural network from scratch using only NumPy — no TensorFlow, no PyTorch, no shortcuts.
+            The goal was never to build the "best" tennis predictor, but to deeply understand how neural networks
+            actually work under the hood: forward propagation, backpropagation, gradient descent, and everything in
+            between.
+          </p>
+          <p>
+            The model achieves <strong>67.4% test accuracy</strong> and outperformed IBM's SlamTracker at Wimbledon 2025
+            by +1.6%.
+            But numbers only tell part of the story — and I believe in being transparent about where this model falls
+            short.
+          </p>
+        </div>
+
+        <div class="about-limitations">
+          <h3 class="about-limitations-title">
+            <span class="about-limitations-icon">⚠️</span>
+            Known Limitations & Areas for Improvement
+          </h3>
+          <div class="limitation-grid">
+            <div class="limitation-card">
+              <div class="limitation-icon">📊</div>
+              <h4>The Calibration Problem</h4>
+              <p>The model is good at <em>ranking</em> who's more likely to win, but tends to be overconfident in its
+                probability estimates — a known issue called "uncalibrated probability."</p>
+            </div>
+            <div class="limitation-card">
+              <div class="limitation-icon">🎾</div>
+              <h4>The Djokovic Paradox</h4>
+              <p>The model struggles with Djokovic specifically (~50% error rate). At 36, his stats suggest decline —
+                yet he won 3 Grand Slams in 2023. Some things numbers can't fully capture.</p>
+            </div>
+            <div class="limitation-card">
+              <div class="limitation-icon">📅</div>
+              <h4>Data Freshness</h4>
+              <p>Predicting 2025 matches with data ending in 2024 means emerging players and recent form shifts aren't
+                fully reflected in the model's knowledge.</p>
+            </div>
+            <div class="limitation-card">
+              <div class="limitation-icon">🔍</div>
+              <h4>The Challenger Blind Spot</h4>
+              <p>Accuracy drops in early rounds where qualifiers with limited match history face top seeds — less data
+                simply means less reliable predictions.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-cta">
+          <p>
+            I dive deeper into all of these challenges — and potential solutions — in my project presentation.
+            If you're curious about the technical details or how this model could be improved, I'd genuinely appreciate
+            you checking it out.
+          </p>
+          <a href="presentation.html" class="about-cta-btn">
+            📽️ View Full Presentation
+          </a>
+        </div>
       </div>
     </div>
   </section>

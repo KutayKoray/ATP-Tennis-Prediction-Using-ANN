@@ -379,15 +379,15 @@ function initNeuralNetwork() {
 
     // Layer config — fewer neurons on mobile for clarity
     const layers = isMobile ? [
-        { n: 4, color: '#00e5ff', glow: 'rgba(0, 229, 255, %%)', label: '37' },
-        { n: 6, color: '#a855f7', glow: 'rgba(168, 85, 247, %%)', label: '128' },
-        { n: 4, color: '#a855f7', glow: 'rgba(168, 85, 247, %%)', label: '64' },
-        { n: 1, color: '#39ff14', glow: 'rgba(57, 255, 20, %%)', label: '1' },
+        { n: 4, color: '#c8a951', glow: 'rgba(200, 169, 81, %%)', label: '37' },
+        { n: 6, color: '#1a3a5c', glow: 'rgba(26, 58, 92, %%)', label: '128' },
+        { n: 4, color: '#1a3a5c', glow: 'rgba(26, 58, 92, %%)', label: '64' },
+        { n: 1, color: '#5c7a3a', glow: 'rgba(92, 122, 58, %%)', label: '1' },
     ] : [
-        { n: 7, color: '#00e5ff', glow: 'rgba(0, 229, 255, %%)', label: '37' },
-        { n: 10, color: '#a855f7', glow: 'rgba(168, 85, 247, %%)', label: '128' },
-        { n: 7, color: '#a855f7', glow: 'rgba(168, 85, 247, %%)', label: '64' },
-        { n: 1, color: '#39ff14', glow: 'rgba(57, 255, 20, %%)', label: '1' },
+        { n: 7, color: '#c8a951', glow: 'rgba(200, 169, 81, %%)', label: '37' },
+        { n: 10, color: '#1a3a5c', glow: 'rgba(26, 58, 92, %%)', label: '128' },
+        { n: 7, color: '#1a3a5c', glow: 'rgba(26, 58, 92, %%)', label: '64' },
+        { n: 1, color: '#5c7a3a', glow: 'rgba(92, 122, 58, %%)', label: '1' },
     ];
 
     const padding = { x: isMobile ? 40 : 80, y: isMobile ? 25 : 35 };
@@ -438,7 +438,7 @@ function initNeuralNetwork() {
                     ctx.beginPath();
                     ctx.moveTo(from.x, from.y);
                     ctx.lineTo(to.x, to.y);
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+                    ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)';
                     ctx.lineWidth = isMobile ? 0.5 : 0.8;
                     ctx.stroke();
                 }
@@ -447,35 +447,23 @@ function initNeuralNetwork() {
     }
 
     function drawNeurons(time) {
+        ctx.globalAlpha = 1;
         for (let li = 0; li < layers.length; li++) {
             const layer = layers[li];
             for (let ni = 0; ni < neurons[li].length; ni++) {
                 const { x, y } = neurons[li][ni];
-                const pulse = 1 + 0.15 * Math.sin(time * 0.002 + ni * 0.7 + li * 1.3);
+                const size = neuronRadius * 2.2;
 
-                // Outer glow
-                const grad = ctx.createRadialGradient(x, y, 0, x, y, neuronRadius * 3 * pulse);
-                grad.addColorStop(0, layer.glow.replace('%%', '0.25'));
-                grad.addColorStop(1, layer.glow.replace('%%', '0'));
+                // White backing circle so emoji is fully visible over connection lines
                 ctx.beginPath();
-                ctx.arc(x, y, neuronRadius * 3 * pulse, 0, Math.PI * 2);
-                ctx.fillStyle = grad;
+                ctx.arc(x, y, neuronRadius * 0.9, 0, Math.PI * 2);
+                ctx.fillStyle = '#ffffff';
                 ctx.fill();
 
-                // Neuron body
-                ctx.beginPath();
-                ctx.arc(x, y, neuronRadius * pulse, 0, Math.PI * 2);
-                ctx.fillStyle = layer.glow.replace('%%', '0.2');
-                ctx.fill();
-                ctx.strokeStyle = layer.color;
-                ctx.lineWidth = 1.5;
-                ctx.stroke();
-
-                // Inner bright core
-                ctx.beginPath();
-                ctx.arc(x, y, neuronRadius * 0.4 * pulse, 0, Math.PI * 2);
-                ctx.fillStyle = layer.color;
-                ctx.fill();
+                ctx.font = `${size}px serif`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('🎾', x, y);
             }
         }
     }
@@ -493,22 +481,18 @@ function initNeuralNetwork() {
             const y = p.fromY + (p.toY - p.fromY) * p.t;
             const alpha = Math.sin(p.t * Math.PI);
 
-            // Glowing particle trail
-            const grad = ctx.createRadialGradient(x, y, 0, x, y, p.size * 4);
-            grad.addColorStop(0, p.color);
-            grad.addColorStop(0.5, p.color + '40');
-            grad.addColorStop(1, 'transparent');
+            // Soft halo
             ctx.beginPath();
-            ctx.arc(x, y, p.size * 4, 0, Math.PI * 2);
-            ctx.fillStyle = grad;
-            ctx.globalAlpha = alpha * 0.6;
+            ctx.arc(x, y, p.size * 2.5, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = alpha * 0.15;
             ctx.fill();
 
-            // Bright core
+            // Solid tennis-ball core
             ctx.beginPath();
             ctx.arc(x, y, p.size, 0, Math.PI * 2);
-            ctx.fillStyle = '#fff';
-            ctx.globalAlpha = alpha;
+            ctx.fillStyle = '#c4d600';
+            ctx.globalAlpha = alpha * 0.9;
             ctx.fill();
 
             ctx.globalAlpha = 1;
@@ -516,7 +500,7 @@ function initNeuralNetwork() {
     }
 
     function drawDotIndicators() {
-        const dotsColor = 'rgba(255, 255, 255, 0.25)';
+        const dotsColor = 'rgba(0, 0, 0, 0.2)';
         for (let li = 0; li < layers.length; li++) {
             if (layers[li].n < 3) continue;
             const x = layerX[li];
@@ -576,13 +560,190 @@ function initNeuralNetwork() {
 // NAVBAR SCROLL EFFECT
 // ═══════════════════════════════════════════════════════════
 
+let scrollProgress = 0;
+
 window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
     if (window.scrollY > 50) {
         navbar.style.padding = '10px 0';
-        navbar.style.background = 'rgba(10, 14, 26, 0.95)';
+        navbar.style.background = 'rgba(250, 249, 246, 0.97)';
     } else {
         navbar.style.padding = '16px 0';
-        navbar.style.background = 'rgba(10, 14, 26, 0.85)';
+        navbar.style.background = 'rgba(250, 249, 246, 0.9)';
+    }
+
+    // Court canvas scroll progress — based on wrapper scroll
+    const wrapper = document.getElementById('heroWrapper');
+    if (wrapper) {
+        const rect = wrapper.getBoundingClientRect();
+        const wrapperScroll = -rect.top; // how far into the wrapper we've scrolled
+        const scrollRange = wrapper.offsetHeight - window.innerHeight; // extra scroll distance
+        scrollProgress = Math.max(0, Math.min(wrapperScroll / scrollRange, 1));
+    }
+
+    // ── Hero Parallax: heading up, stats down, court reveals between ──
+    const heroHeading = document.querySelector('.hero h1');
+    const heroBadge = document.querySelector('.hero-badge');
+    const heroSubtitle = document.querySelector('.hero-subtitle');
+    const heroStats = document.querySelector('.hero-stats');
+
+    if (heroHeading) {
+        heroHeading.style.transform = `translateY(${scrollProgress * -200}px)`;
+        heroHeading.style.opacity = Math.max(1 - scrollProgress * 2.5, 0);
+    }
+    if (heroBadge) {
+        heroBadge.style.transform = `translateY(${scrollProgress * -180}px)`;
+        heroBadge.style.opacity = Math.max(1 - scrollProgress * 3, 0);
+    }
+    if (heroSubtitle) {
+        heroSubtitle.style.transform = `translateY(${scrollProgress * -160}px)`;
+        heroSubtitle.style.opacity = Math.max(1 - scrollProgress * 2.5, 0);
+    }
+    if (heroStats) {
+        heroStats.style.transform = `translateY(${scrollProgress * 150}px)`;
+        heroStats.style.opacity = Math.max(1 - scrollProgress * 2, 0);
     }
 });
+
+// ═══════════════════════════════════════════════════════════
+// SCROLL-DRIVEN TENNIS BALL ON COURT IMAGE
+// ═══════════════════════════════════════════════════════════
+
+function initCourtBall() {
+    const canvas = document.getElementById('ballCanvas');
+    const courtBg = document.getElementById('courtBg');
+    if (!canvas || !courtBg) return;
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    let W, H;
+
+    function resize() {
+        const rect = courtBg.getBoundingClientRect();
+        W = rect.width;
+        H = rect.height;
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    let lastProgress = -1;
+
+    function render() {
+        const p = scrollProgress; // 0 (top) → 1 (scrolled past hero)
+
+        // Only repaint if scroll changed
+        if (Math.abs(p - lastProgress) < 0.001) {
+            requestAnimationFrame(render);
+            return;
+        }
+        lastProgress = p;
+
+        // Court zoom + move upward as we approach
+        const scale = 1 + p * 0.6;
+        const courtUpPercent = -30 - p * 25; // starts at -30%, moves to -55%
+        courtBg.style.transform = `translateX(-50%) translateY(${courtUpPercent}%) scale(${scale})`;
+        courtBg.style.opacity = 0.10 + p * 0.22;
+
+        ctx.clearRect(0, 0, W, H);
+
+        // Ball appears after 5% scroll
+        if (p < 0.05) {
+            requestAnimationFrame(render);
+            return;
+        }
+
+        const ballP = Math.min((p - 0.05) / 0.90, 1);
+        const t = ballP;
+
+        // Ball trajectory: far-RIGHT corner of court → over net → near-LEFT on our half
+        const startX = W * 0.65, startY = H * 0.30;
+        const midX = W * 0.48, midY = H * 0.38;
+        const endX = W * 0.25, endY = H * 0.72;  // between service & baseline
+
+        // Quadratic bezier path
+        const bx = (1 - t) * (1 - t) * startX + 2 * (1 - t) * t * midX + t * t * endX;
+        const baseY = (1 - t) * (1 - t) * startY + 2 * (1 - t) * t * midY + t * t * endY;
+
+        // Arc above the net
+        const arcHeight = Math.sin(t * Math.PI) * (40 + t * 30);
+
+        const ballX = bx;
+        const ballY = baseY - arcHeight;
+
+        // Ball size — smaller on mobile
+        const isMobileBall = W < 500;
+        const ballR = isMobileBall ? (2 + t * 3) : (3 + t * 5);
+
+        // ── Draw ball shadow on court ──
+        ctx.beginPath();
+        ctx.ellipse(bx, baseY + 2, ballR * 1.4, ballR * 0.35, 0, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 0, 0, ${0.1 + t * 0.15})`;
+        ctx.fill();
+
+        // ── Draw tennis ball ──
+        const grad = ctx.createRadialGradient(
+            ballX - ballR * 0.3, ballY - ballR * 0.3, ballR * 0.1,
+            ballX, ballY, ballR
+        );
+        grad.addColorStop(0, '#e0e800');
+        grad.addColorStop(0.35, '#c4d600');
+        grad.addColorStop(0.75, '#a0b400');
+        grad.addColorStop(1, '#7a8c00');
+
+        ctx.beginPath();
+        ctx.arc(ballX, ballY, ballR, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // Felt texture ring
+        ctx.beginPath();
+        ctx.arc(ballX, ballY, ballR * 0.92, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(180, 200, 0, 0.25)';
+        ctx.lineWidth = ballR * 0.2;
+        ctx.stroke();
+
+        // Seam lines (rotate based on progress)
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(ballX, ballY, ballR, 0, Math.PI * 2);
+        ctx.clip();
+
+        ctx.translate(ballX, ballY);
+        // Spin while traveling, decelerate and stop on landing
+        const spinEase = t < 0.9 ? t : 0.9 + (t - 0.9) * 0.1; // slows near end
+        ctx.rotate(spinEase * Math.PI * 8);
+
+        ctx.beginPath();
+        ctx.arc(-ballR * 0.4, 0, ballR * 0.6, -1.0, 1.0);
+        ctx.strokeStyle = 'rgba(255,255,255,0.55)';
+        ctx.lineWidth = ballR > 6 ? 1.5 : 1;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(ballR * 0.4, 0, ballR * 0.6, Math.PI - 1.0, Math.PI + 1.0);
+        ctx.strokeStyle = 'rgba(255,255,255,0.55)';
+        ctx.lineWidth = ballR > 6 ? 1.5 : 1;
+        ctx.stroke();
+
+        ctx.restore();
+
+        // Border
+        ctx.beginPath();
+        ctx.arc(ballX, ballY, ballR, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(100, 120, 0, 0.3)';
+        ctx.lineWidth = 0.6;
+        ctx.stroke();
+
+        requestAnimationFrame(render);
+    }
+
+    requestAnimationFrame(render);
+}
+
+// Init on DOM load
+document.addEventListener('DOMContentLoaded', initCourtBall);
+
+
